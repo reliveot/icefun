@@ -727,7 +727,7 @@
   <!-- 開場迎賓啟動畫面 -->
   <div id="welcome-modal" class="modal-overlay open">
     <div class="welcome-card">
-      <span class="welcome-badge">吱吱復健 · Relive OT</span>
+      <span class="welcome-badge">吱吱復健 · Relive OT｜v10</span>
       <div class="welcome-title">🥣 懷舊冰果室｜手搖剉冰樂</div>
       <div class="welcome-sub">上肢空間定位・物品顏色感測・記憶認知訓練</div>
       <div class="welcome-desc">
@@ -1371,6 +1371,7 @@
     ];
 
     const isMultiBasinFindMode = () => ['FIND', 'MEMORY_ORDER', 'MEMORY_QUIZ'].includes(config.gameMode);
+    const isColorPickingCleanScreen = () => (config.trackMode === 'COLOR' && state.cameraActive && (state.awaitingColorPick || !state.colorTarget));
 
     function hasFreshTracking(now = performance.now()) {
       if (!state.cameraActive || config.trackMode === 'TOUCH') return true;
@@ -1518,6 +1519,7 @@
       document.getElementById('color-swatch').style.background = `rgb(${state.colorTarget.r},${state.colorTarget.g},${state.colorTarget.b})`;
       document.getElementById('status-dot').className = 'status-dot cam-on';
       document.getElementById('tracking-text').textContent = '🎨 已鎖定物品顏色！移動物品即可操作';
+      updateHUD();
       spawnSuccessParticles(clientX, clientY, `rgb(${state.colorTarget.r},${state.colorTarget.g},${state.colorTarget.b})`, 16);
       sound.playScoop();
       return true;
@@ -1618,64 +1620,84 @@
       }
     }
 
+    let handModelInitPromise = null;
     async function ensureHandModel() {
       if (state.handModel) return state.handModel;
-      if (typeof window.Hands !== 'function') await loadScriptWithFallback(HANDS_SCRIPT_URLS);
-      const model = new window.Hands({ locateFile: f => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${f}` });
-      model.setOptions({ maxNumHands: 2, modelComplexity: 1, minDetectionConfidence: 0.25, minTrackingConfidence: 0.25 });
-      model.onResults(res => {
-        if (!state.cameraActive || config.trackMode !== 'HAND') return;
-        const statusDot = document.getElementById('status-dot');
-        const trackingText = document.getElementById('tracking-text');
-        const now = performance.now();
+      if (handModelInitPromise) return handModelInitPromise;
 
-        const lmsList = res?.multiHandLandmarks || [];
-        const handInfos = res?.multiHandedness || [];
+      handModelInitPromise = (async () => {
+        try {
+          if (typeof window.Hands !== 'function') await loadScriptWithFallback(HANDS_SCRIPT_URLS);
+          const model = new window.Hands({
+            locateFile: f => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${f}`
+          });
+          model.setOptions({
+            maxNumHands: 2,
+            modelComplexity: 0,
+            minDetectionConfidence: 0.35,
+            minTrackingConfidence: 0.35
+          });
+          model.onResults(res => {
+            if (!state.cameraActive || config.trackMode !== 'HAND') return;
+            const statusDot = document.getElementById('status-dot');
+            const trackingText = document.getElementById('tracking-text');
+            const now = performance.now();
 
-        if (!lmsList.length) {
-          state.missCount++;
-          state.zeroDetectStreak++;
-          if (!state.useWorkCanvasFallback && state.zeroDetectStreak >= 25 && video.videoWidth > 0) state.useWorkCanvasFallback = true;
-          if (state.missCount >= 3 && (now - state.lastTrackValidTime > 350)) {
-            statusDot.className = 'status-dot cam-warn';
-            trackingText.textContent = '📷 未偵測到手部，已暫停判定（請將手舉起進入畫面）';
-          }
-          return;
+            const lmsList = res?.multiHandLandmarks || [];
+            const handInfos = res?.multiHandedness || [];
+
+            if (!lmsList.length) {
+              state.missCount++;
+              state.zeroDetectStreak++;
+              if (!state.useWorkCanvasFallback && state.zeroDetectStreak >= 12 && video.videoWidth > 0) {
+                state.useWorkCanvasFallback = true;
+              }
+              if (state.missCount >= 3 && (now - state.lastTrackValidTime > 350)) {
+                statusDot.className = 'status-dot cam-warn';
+                trackingText.textContent = '📷 未偵測到手部，已暫停判定（請將手舉起進入畫面）';
+              }
+              return;
+            }
+
+            state.zeroDetectStreak = 0;
+            let chosenIdx = -1;
+            for (let i = 0; i < lmsList.length; i++) {
+              const rawLabel = handInfos[i]?.label || 'Right';
+              const actualHand = config.mirrorCam ? (rawLabel === 'Left' ? 'Right' : 'Left') : rawLabel;
+              if (config.handPref === 'ANY' || actualHand === config.handPref) {
+                chosenIdx = i;
+                state.detectedHandLabel = actualHand === 'Left' ? '左手' : '右手';
+                break;
+              }
+            }
+            if (chosenIdx === -1) return;
+
+            const lm = lmsList[chosenIdx];
+            const palmIds = [0, 5, 9, 13, 17].filter(idx => lm[idx]);
+            if (!palmIds.length) return;
+            const norm = normalizeCameraPoint({
+              x: palmIds.reduce((acc, idx) => acc + lm[idx].x, 0) / palmIds.length,
+              y: palmIds.reduce((acc, idx) => acc + lm[idx].y, 0) / palmIds.length
+            });
+            if (norm) {
+              state.missCount = 0;
+              state.targetCursorX = norm.x;
+              state.targetCursorY = norm.y;
+              state.lastTrackValidTime = now;
+              statusDot.className = 'status-dot cam-on';
+              trackingText.textContent = `✋ 穩定追蹤【${state.detectedHandLabel}】｜螢幕恆亮中`;
+            }
+          });
+
+          if (typeof model.initialize === 'function') await model.initialize();
+          state.handModel = model;
+          return model;
+        } finally {
+          handModelInitPromise = null;
         }
+      })();
 
-        state.zeroDetectStreak = 0;
-        let chosenIdx = -1;
-        for (let i = 0; i < lmsList.length; i++) {
-          const rawLabel = handInfos[i]?.label || 'Right';
-          const actualHand = config.mirrorCam ? (rawLabel === 'Left' ? 'Right' : 'Left') : rawLabel;
-          if (config.handPref === 'ANY' || actualHand === config.handPref) {
-            chosenIdx = i;
-            state.detectedHandLabel = actualHand === 'Left' ? '左手' : '右手';
-            break;
-          }
-        }
-        if (chosenIdx === -1) return;
-
-        const lm = lmsList[chosenIdx];
-        const palmIds = [0, 5, 9, 13, 17].filter(idx => lm[idx]);
-        if (!palmIds.length) return;
-        const norm = normalizeCameraPoint({
-          x: palmIds.reduce((acc, idx) => acc + lm[idx].x, 0) / palmIds.length,
-          y: palmIds.reduce((acc, idx) => acc + lm[idx].y, 0) / palmIds.length
-        });
-        if (norm) {
-          state.missCount = 0;
-          state.targetCursorX = norm.x;
-          state.targetCursorY = norm.y;
-          state.lastTrackValidTime = now;
-          statusDot.className = 'status-dot cam-on';
-          trackingText.textContent = `✋ 穩定追蹤【${state.detectedHandLabel}】｜螢幕恆亮中`;
-        }
-      });
-
-      if (typeof model.initialize === 'function') await model.initialize();
-      state.handModel = model;
-      return model;
+      return handModelInitPromise;
     }
 
     async function startCameraTracking() {
@@ -1720,6 +1742,7 @@
         state.lastTrackValidTime = 0;
 
         repickBtn.classList.toggle('visible', config.trackMode === 'COLOR');
+        updateHUD();
         if (config.trackMode === 'COLOR') {
           statusDot.className = state.colorTarget ? 'status-dot cam-on' : 'status-dot cam-warn';
           trackingText.textContent = state.colorTarget ? '🎨 顏色追蹤中｜移動物品即可操作' : '👆 請直接點擊畫面上的彩色物品／握把取色！';
@@ -1739,11 +1762,15 @@
             return;
           }
 
-          if (state.busy && now - state.busySince > 1200) state.busy = false;
-          if (now - state.lastInferTs < 35) return;
+          if (!state.handModel) {
+            ensureHandModel().catch(() => {});
+            return;
+          }
 
-          if (!state.busy && video.readyState >= 2 && video.videoWidth > 0 && video.currentTime !== state.previousVideoTime) {
-            state.previousVideoTime = video.currentTime;
+          if (state.busy && now - state.busySince > 1200) state.busy = false;
+          if (now - state.lastInferTs < 38) return;
+
+          if (!state.busy && video.readyState >= 2 && video.videoWidth > 0) {
             state.lastInferTs = now;
             state.busy = true;
             state.busySince = now;
@@ -1995,6 +2022,8 @@
     }
 
     function updateHUD() {
+      const topHudEl = document.getElementById('top-hud');
+      if (topHudEl) topHudEl.style.visibility = isColorPickingCleanScreen() ? 'hidden' : 'visible';
       const recipe = getCurrentRecipe();
       const steps = recipe.steps;
       const isMemOrder = (config.gameMode === 'MEMORY_ORDER');
@@ -2122,7 +2151,7 @@
     }
 
     function updateGameLogic(dt, w, h) {
-      if (state.paused || state.inSummary) return;
+      if (state.paused || state.inSummary || isColorPickingCleanScreen()) return;
 
       const now = performance.now();
       const trackingFresh = hasFreshTracking(now);
@@ -2478,8 +2507,40 @@
       }
     }
 
+    function drawCleanColorPickOverlay(w, h) {
+      const cx = w * 0.5;
+      const boxY = Math.max(138, h * 0.22);
+      const boxW = Math.min(w - 28, 430);
+      const boxH = 74;
+
+      ctx.save();
+      ctx.fillStyle = 'rgba(255, 249, 237, 0.94)';
+      roundRect(ctx, cx - boxW * 0.5, boxY, boxW, boxH, 18);
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#A95E35';
+      ctx.stroke();
+
+      ctx.font = '900 18px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#4A3222';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🎨 請直接點擊畫面上的彩色物品／握把', cx, boxY + 26, boxW - 24);
+
+      ctx.font = '700 13.5px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#7F7163';
+      ctx.fillText('取色完成後，配料盆與冰碗就會自動出現', cx, boxY + 52, boxW - 24);
+      ctx.restore();
+    }
+
     function drawScene(w, h) {
       ctx.clearRect(0, 0, w, h);
+
+      if (isColorPickingCleanScreen()) {
+        // 物品顏色感測取色階段：隱藏所有食材盆、冰碗與游標，保留 100% 乾淨鏡頭畫面方便點選取色
+        drawCleanColorPickOverlay(w, h);
+        return;
+      }
 
       if (state.cameraActive) {
         ctx.fillStyle = 'rgba(67, 45, 28, 0.32)';
@@ -3278,6 +3339,7 @@
         state.colorTarget = null;
         document.getElementById('status-dot').className = 'status-dot cam-warn';
         document.getElementById('tracking-text').textContent = '👆 請直接點擊畫面上的彩色物品／握把取色！';
+        updateHUD();
       });
 
       document.getElementById('btn-repick-in-panel').addEventListener('click', () => {
@@ -3299,16 +3361,25 @@
         settingsModal.classList.add('open');
       });
 
-      const closeSettings = () => {
+      const closeSettings = async () => {
         settingsModal.classList.remove('open');
         state.paused = false;
+        state.zeroDetectStreak = 0;
+        state.missCount = 0;
+        state.busy = false;
         requestScreenWakeLock();
-        startNewBowl();
         if (config.trackMode === 'TOUCH' && state.cameraActive) stopCameraTracking(false);
-        else if (config.trackMode !== 'TOUCH' && !state.cameraActive) startCameraTracking();
-        else if (config.trackMode === 'HAND' && state.cameraActive) ensureHandModel();
-        else if (config.trackMode === 'COLOR' && state.cameraActive) state.awaitingColorPick = !state.colorTarget;
+        else if (config.trackMode !== 'TOUCH' && !state.cameraActive) await startCameraTracking();
+        else if (config.trackMode === 'HAND' && state.cameraActive) {
+          document.getElementById('tracking-text').textContent = '⏳ 正在啟動手部辨識…';
+          await ensureHandModel();
+          document.getElementById('tracking-text').textContent = '📷 鏡頭已啟動！請將手舉起進入畫面';
+        } else if (config.trackMode === 'COLOR' && state.cameraActive) {
+          state.awaitingColorPick = !state.colorTarget;
+        }
+        startNewBowl();
         syncTrackModeButtons();
+        updateHUD();
       };
       document.getElementById('btn-close-settings').addEventListener('click', closeSettings);
       document.getElementById('btn-apply-settings').addEventListener('click', closeSettings);
