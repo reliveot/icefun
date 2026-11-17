@@ -133,10 +133,10 @@
       display: inline-flex;
       align-items: center;
       gap: 3px;
-      padding: 2px 7px;
+      padding: 3px 8px;
       border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       background: #EEE2D1;
       border: 1px solid #E2D2BE;
       color: #806F5D;
@@ -155,7 +155,7 @@
       border-radius: 5px;
       padding: 5px 8px;
       font-weight: 800;
-      font-size: clamp(12px, 3.3vw, 16px);
+      font-size: clamp(13px, 3.5vw, 17px);
       line-height: 1.3;
     }
     #hud-action-line img.hud-mini-icon {
@@ -356,7 +356,7 @@
       cursor: pointer;
     }
 
-    /* 治療師設定抽屜（對齊夜市料理秀：遊戲模式卡片選單 ＋ 細節控制） */
+    /* 治療師設定抽屜（五大清晰區塊） */
     .settings-card {
       background: var(--paper);
       border: 3px solid var(--wood);
@@ -412,9 +412,6 @@
       justify-content: space-between;
     }
 
-    .setting-desc { font-size: 0.82rem; color: var(--muted-ink); line-height: 1.45; }
-
-    /* 遊戲模式卡片網格（仿夜市遊戲模式選擇） */
     .mode-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -472,7 +469,6 @@
       line-height: 1.42;
     }
 
-    /* 細節控制列 */
     .detail-row {
       display: flex;
       flex-direction: column;
@@ -638,7 +634,7 @@
       .hud-main-board { padding: 7px 9px; }
       .hud-btn-group { flex-direction: column; gap: 5px; }
       .circle-icon-btn { width: 36px; height: 36px; font-size: 17px; }
-      .ing-step-pill { font-size: 10px; padding: 2px 5px; }
+      .ing-step-pill { font-size: 11px; padding: 2px 6px; }
       #bottom-bar { bottom: calc(env(safe-area-inset-bottom) + 6px); }
     }
 
@@ -647,8 +643,8 @@
       .hud-main-board { padding: 12px 16px; gap: 7px; border-radius: 18px; }
       #hud-recipe-name { font-size: 1.38rem; }
       .bowl-counter-badge { font-size: 0.95rem; padding: 4px 12px; }
-      .ing-step-pill { font-size: 0.92rem; padding: 4px 10px; }
-      #hud-action-line { font-size: 1.15rem; padding: 7px 12px; }
+      .ing-step-pill { font-size: 0.95rem; padding: 4px 10px; }
+      #hud-action-line { font-size: 1.18rem; padding: 7px 12px; }
       .circle-icon-btn { width: 46px; height: 46px; font-size: 1.25rem; }
     }
 
@@ -666,8 +662,8 @@
       .hud-top-row { flex-wrap: wrap; gap: 6px; }
       #hud-recipe-name { font-size: clamp(1rem, 1.9vw, 1.25rem); white-space: normal; line-height: 1.25; }
       #hud-step-pills { flex-direction: column; align-items: stretch; gap: 5px; overflow-x: visible; white-space: normal; }
-      .ing-step-pill { font-size: clamp(0.78rem, 1.35vw, 0.9rem); padding: 4px 8px; justify-content: flex-start; }
-      #hud-action-line { font-size: clamp(0.9rem, 1.6vw, 1.08rem); padding: 7px 10px; line-height: 1.35; }
+      .ing-step-pill { font-size: clamp(0.82rem, 1.4vw, 0.95rem); padding: 4px 8px; justify-content: flex-start; }
+      #hud-action-line { font-size: clamp(0.95rem, 1.65vw, 1.12rem); padding: 7px 10px; line-height: 1.35; }
       .hud-btn-group { justify-content: flex-start; gap: 8px; }
       #bottom-bar {
         left: calc(env(safe-area-inset-left) + 12px);
@@ -684,8 +680,8 @@
       #hud-recipe-name { font-size: 0.95rem; }
       .bowl-counter-badge { font-size: 0.72rem; padding: 2px 7px; }
       #hud-step-pills { flex-direction: row; flex-wrap: wrap; gap: 4px; }
-      .ing-step-pill { font-size: 0.72rem; padding: 2px 6px; }
-      #hud-action-line { font-size: 0.85rem; padding: 5px 8px; }
+      .ing-step-pill { font-size: 0.75rem; padding: 2px 6px; }
+      #hud-action-line { font-size: 0.88rem; padding: 5px 8px; }
       .circle-icon-btn { width: 34px; height: 34px; font-size: 0.95rem; }
       #bottom-bar { left: calc(env(safe-area-inset-left) + 8px); bottom: 6px; }
     }
@@ -700,7 +696,7 @@
   <div id="top-hud">
     <div class="hud-main-board">
       <div class="hud-top-row">
-        <span id="hud-recipe-name">🥣 招牌八寶牛奶冰</span>
+        <span id="hud-recipe-name">🥣 相思紅豆湯圓牛奶冰</span>
         <span id="hud-bowl-text" class="bowl-counter-badge">第 1 / 5 碗</span>
       </div>
       <div id="hud-step-pills"></div>
@@ -735,20 +731,20 @@
       <div class="welcome-title">🥣 懷舊冰果室｜手搖剉冰樂</div>
       <div class="welcome-sub">上肢空間定位・物品顏色感測・記憶認知訓練</div>
       <div class="welcome-desc">
-        <strong>看客人點餐找配料，放回冰碗完成剉冰！</strong><br>
-        ① 移動湯匙到<strong>【配料區】</strong>挖起指定配料<br>
-        ② 再<strong>【放回冰碗】</strong>，完成所有配料即可上菜
+        <strong>每碗 2 種配料 ＋ 1 種淋醬，看點餐找料放回冰碗！</strong><br>
+        ① 移動湯匙到<strong>【配料區】</strong>挖起指定材料<br>
+        ② 再<strong>【放回冰碗】</strong>，完成 3 樣即可上菜
       </div>
       <div class="welcome-actions">
         <button id="btn-welcome-hand" class="btn-accent-main">✋ 啟動手部體感・開始做冰</button>
         <button id="btn-welcome-color" class="btn-wood-sub">🎨 啟動物品顏色感測（手持彩色握把／物品）</button>
         <button id="btn-welcome-touch" class="btn-wood-sub">👆 不開鏡頭・直接用觸控／滑鼠開始</button>
       </div>
-      <button id="btn-welcome-settings" class="secondary-btn">⚙️ 選擇遊戲模式與細節設定</button>
+      <button id="btn-welcome-settings" class="secondary-btn">⚙️ 選擇遊戲模式與控制設定</button>
     </div>
   </div>
 
-  <!-- 治療師設定面板（仿夜市料理秀：上方遊戲模式卡片 ＋ 下方細節控制） -->
+  <!-- 治療師設定面板（五大獨立區塊） -->
   <div id="settings-modal" class="modal-overlay">
     <div class="settings-card">
       <div class="settings-header">
@@ -757,7 +753,7 @@
       </div>
 
       <div class="settings-body">
-        <!-- 第一大區：選擇遊戲模式（共 4 種經典玩法） -->
+        <!-- 一、遊戲模式 -->
         <section class="setting-section">
           <div class="setting-section-title">
             <span>1. 選擇遊戲模式（共 4 種玩法）</span>
@@ -783,10 +779,10 @@
 
             <div class="mode-card" data-mode="MEMORY_ORDER">
               <div class="mode-card-header">
-                <span class="mode-card-title">🔵 點餐記憶（盲做找料）</span>
+                <span class="mode-card-title">🔵 點餐記憶（不限順序）</span>
                 <span class="mode-card-badge">第 2 級起</span>
               </div>
-              <div class="mode-card-desc">開始前客人先報出整碗要的配料，接著隱藏訂單提示，憑短期記憶依序挖出正確材料！</div>
+              <div class="mode-card-desc">開始前客人先報出整碗要的 3 樣材料，接著隱藏訂單，憑記憶湊齊這 3 樣材料即可（先拿哪樣都行）！</div>
             </div>
 
             <div class="mode-card" data-mode="MEMORY_QUIZ">
@@ -794,19 +790,58 @@
                 <span class="mode-card-title">🟣 做完猜口味（回想推理）</span>
                 <span class="mode-card-badge">第 2 級起</span>
               </div>
-              <div class="mode-card-desc">製作時隱藏冰品名稱，加完所有配料後跳出 3 碗招牌剉冰，回想剛剛加了什麼選出正確口味！</div>
+              <div class="mode-card-desc">製作時隱藏冰品名稱，加完 3 樣材料後跳出 3 碗剉冰（含 1.5 秒思考保護），回想剛剛加了什麼選出正確口味！</div>
             </div>
           </div>
         </section>
 
-        <!-- 第二大區：空間與感測方式設定 -->
+        <!-- 二、控制方式（獨立成一大項） -->
         <section class="setting-section">
           <div class="setting-section-title">
-            <span>2. 空間方向與感測方式</span>
+            <span>2. 控制方式（手部體感／物品顏色／觸控）</span>
           </div>
 
           <div class="detail-row">
-            <div class="detail-label">空間大區塊分級（認知找料模式至少從第 2 級開始）：</div>
+            <div class="detail-label">選擇操作來源：</div>
+            <div class="btn-grid" id="grp-track-mode">
+              <button class="opt-btn active" data-val="HAND">✋ 手部體感</button>
+              <button class="opt-btn" data-val="COLOR">🎨 物品顏色感測</button>
+              <button class="opt-btn" data-val="TOUCH">👆 觸控／滑鼠（懷舊吧台）</button>
+            </div>
+          </div>
+
+          <div class="detail-row" id="sub-hand-pref">
+            <div class="detail-label">指定慣用／患側手（手部體感模式）：</div>
+            <div class="btn-grid" id="grp-hand-pref">
+              <button class="opt-btn active" data-val="ANY">任一手</button>
+              <button class="opt-btn" data-val="Left">僅左手</button>
+              <button class="opt-btn" data-val="Right">僅右手</button>
+            </div>
+          </div>
+
+          <div class="detail-row" id="sub-color-tools" style="display:none;">
+            <div class="detail-label">物品顏色感測操作：</div>
+            <div class="btn-grid">
+              <button id="btn-repick-in-panel" class="opt-btn">🎯 點擊畫面中的彩色物品／握把取色</button>
+            </div>
+          </div>
+
+          <div class="detail-row" id="sub-mirror-row">
+            <div class="detail-label">前鏡頭左右鏡像：</div>
+            <div class="btn-grid">
+              <button id="btn-toggle-mirror" class="opt-btn active">🪞 鏡像開（照鏡子方向）</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 三、空間分級與方向 -->
+        <section class="setting-section">
+          <div class="setting-section-title">
+            <span>3. 空間大區塊分級與方向</span>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-label">空間層級（找料／記憶模式自動從第 2 級起跳）：</div>
             <div class="btn-grid" id="grp-space-level">
               <button class="opt-btn active" data-val="1">第 1 級：對半兩大區</button>
               <button class="opt-btn" data-val="2">第 2 級：中央碗＋左右</button>
@@ -833,54 +868,12 @@
               <button class="opt-btn" data-val="RANDOM">隨機方位</button>
             </div>
           </div>
-
-          <div class="detail-row">
-            <div class="detail-label">追蹤感測方式（手部體感／物品顏色感測／觸控）：</div>
-            <div class="btn-grid" id="grp-track-mode">
-              <button class="opt-btn active" data-val="HAND">✋ 手部體感</button>
-              <button class="opt-btn" data-val="COLOR">🎨 物品顏色感測</button>
-              <button class="opt-btn" data-val="TOUCH">👆 觸控／滑鼠（懷舊吧台）</button>
-            </div>
-          </div>
-
-          <div class="detail-row" id="sub-hand-pref">
-            <div class="detail-label">指定慣用／患側手（手部體感模式）：</div>
-            <div class="btn-grid" id="grp-hand-pref">
-              <button class="opt-btn active" data-val="ANY">任一手</button>
-              <button class="opt-btn" data-val="Left">僅左手</button>
-              <button class="opt-btn" data-val="Right">僅右手</button>
-            </div>
-          </div>
-
-          <div class="detail-row" id="sub-color-tools" style="display:none;">
-            <div class="detail-label">物品顏色感測操作：</div>
-            <div class="btn-grid">
-              <button id="btn-repick-in-panel" class="opt-btn">🎯 點擊畫面中的彩色物品／握把取色</button>
-            </div>
-          </div>
         </section>
 
-        <!-- 第三大區：細節控制（每碗材料數、停留秒數、往返與語音） -->
+        <!-- 四、訓練細節調整 -->
         <section class="setting-section">
           <div class="setting-section-title">
-            <span>3. 細節控制（分量、停留秒數、往返與語音）</span>
-          </div>
-
-          <div class="detail-row">
-            <div class="detail-label">每碗配料數量（標準 5 樣＝4 種配料＋1 種淋醬）：</div>
-            <div class="btn-grid" id="grp-step-count">
-              <button class="opt-btn active" data-val="5">5 樣／碗（4 料＋1 醬・動作計數標準）</button>
-              <button class="opt-btn" data-val="3">3 樣／碗（2 料＋1 醬・精簡快速局）</button>
-            </div>
-          </div>
-
-          <div class="detail-row">
-            <div class="detail-label">點餐記憶模式：開局看菜單秒數（僅「點餐記憶」模式生效）：</div>
-            <div class="btn-grid" id="grp-memorize-sec">
-              <button class="opt-btn" data-val="4">4 秒（快記）</button>
-              <button class="opt-btn active" data-val="6">6 秒（標準）</button>
-              <button class="opt-btn" data-val="9">9 秒（充裕）</button>
-            </div>
+            <span>4. 訓練細節調整（停留秒數、往返、碗數與聲音）</span>
           </div>
 
           <div class="detail-row">
@@ -906,23 +899,31 @@
             </div>
           </div>
 
+          <div class="detail-row" id="sub-memorize-row" style="display:none;">
+            <div class="detail-label">點餐記憶模式：開局看菜單秒數：</div>
+            <div class="btn-grid" id="grp-memorize-sec">
+              <button class="opt-btn" data-val="4">4 秒（快記）</button>
+              <button class="opt-btn active" data-val="6">6 秒（標準）</button>
+              <button class="opt-btn" data-val="9">9 秒（充裕）</button>
+            </div>
+          </div>
+
           <div class="detail-row">
-            <div class="detail-label">完成碗數與聲音／鏡頭設定：</div>
+            <div class="detail-label">完成碗數（每碗 3 樣＝3 次往返動作）與聲音設定：</div>
             <div class="btn-grid" id="grp-target-bowls">
-              <button class="opt-btn" data-val="3">3 碗</button>
-              <button class="opt-btn active" data-val="5">5 碗</button>
-              <button class="opt-btn" data-val="8">8 碗</button>
-              <button class="opt-btn" data-val="12">12 碗</button>
+              <button class="opt-btn" data-val="3">3 碗（9 下）</button>
+              <button class="opt-btn active" data-val="5">5 碗（15 下）</button>
+              <button class="opt-btn" data-val="7">7 碗（21 下）</button>
+              <button class="opt-btn" data-val="10">10 碗（30 下）</button>
             </div>
             <div class="btn-grid" style="margin-top:4px;">
               <button id="btn-toggle-sound" class="opt-btn active">🔊 音效開</button>
               <button id="btn-toggle-tts" class="opt-btn active">🗣️ 語音報料開</button>
-              <button id="btn-toggle-mirror" class="opt-btn active">🪞 鏡像開</button>
             </div>
           </div>
         </section>
 
-        <!-- 第四大區：延伸復健資源與課程工具 -->
+        <!-- 五、延伸復健資源與課程工具 -->
         <section class="cr-section-wrap" aria-label="延伸復健資源與工具">
           <div class="cr-section-heading">🌿 延伸復健資源與課程工具 · 吱吱復健</div>
           <div class="cr-root">
@@ -1052,11 +1053,11 @@
           <div class="stat-label">完成招牌剉冰</div>
         </div>
         <div class="stat-box">
-          <div id="sum-actions" class="stat-val">25 次</div>
+          <div id="sum-actions" class="stat-val">15 次</div>
           <div class="stat-label">成功挖料與加料</div>
         </div>
         <div class="stat-box">
-          <div id="sum-time" class="stat-val">01:40</div>
+          <div id="sum-time" class="stat-val">01:20</div>
           <div class="stat-label">總練習時間</div>
         </div>
       </div>
@@ -1108,62 +1109,111 @@
     });
 
     /********************************************************************
-     * 3. 18 種台灣古早味食材（無形容詞純粹原名） & 24 款經典剉冰（支援 5 樣：4 配料＋1 淋醬 或 3 樣：2 配料＋1 淋醬）
+     * 3. 18 種原名食材（13 種配料 ＋ 5 種淋醬） & 28 款在地特色經典 + 無限動態組合菜單引擎
      ********************************************************************/
     const INGREDIENTS = {
-      red_bean:       { id: 'red_bean',       name: '紅豆',     imgFile: 'ing-red_bean.png',       color: '#8B1E28', badgeColor: '#E63946', type: 'beans',       pitch: 440 },
-      mung_bean:      { id: 'mung_bean',      name: '綠豆',     imgFile: 'ing-mung_bean.png',      color: '#7E8F35', badgeColor: '#84CC16', type: 'beans',       pitch: 466 },
-      mango:          { id: 'mango',          name: '芒果',     imgFile: 'ing-mango.png',          color: '#FFA800', badgeColor: '#F59E0B', type: 'chunks',      pitch: 523 },
-      taro_ball:      { id: 'taro_ball',      name: '芋圓',     imgFile: 'ing-taro_ball.png',      color: '#9B7EDE', badgeColor: '#A855F7', type: 'balls',       pitch: 493, secondaryColor: '#F59E0B' },
-      boba:           { id: 'boba',           name: '粉圓',     imgFile: 'ing-boba.png',           color: '#2B1810', badgeColor: '#D97706', type: 'boba',        pitch: 392 },
-      grass_jelly:    { id: 'grass_jelly',    name: '仙草',     imgFile: 'ing-grass_jelly.png',    color: '#231F20', badgeColor: '#64748B', type: 'jelly_cubes', pitch: 415 },
-      fengkuei:       { id: 'fengkuei',       name: '粉粿',     imgFile: 'ing-fengkuei.png',       color: '#FFD60A', badgeColor: '#EAB308', type: 'jelly_cubes', pitch: 554 },
-      aiyu:           { id: 'aiyu',           name: '愛玉',     imgFile: 'ing-aiyu.png',           color: '#F59E0B', badgeColor: '#FB923C', type: 'jelly_cubes', pitch: 587 },
-      peanut:         { id: 'peanut',         name: '花生',     imgFile: 'ing-peanut.png',         color: '#D4A373', badgeColor: '#D97706', type: 'beans',       pitch: 440 },
-      strawberry:     { id: 'strawberry',     name: '草莓',     imgFile: 'ing-strawberry.png',     color: '#E63946', badgeColor: '#F43F5E', type: 'strawberry',  pitch: 659 },
-      pineapple:      { id: 'pineapple',      name: '鳳梨',     imgFile: 'ing-pineapple.png',      color: '#FACC15', badgeColor: '#EAB308', type: 'chunks',      pitch: 587 },
-      tangyuan:       { id: 'tangyuan',       name: '湯圓',     imgFile: 'ing-tangyuan.png',       color: '#FF758F', badgeColor: '#EC4899', type: 'balls',       pitch: 523, secondaryColor: '#FFF8F0' },
-      condensed_milk: { id: 'condensed_milk', name: '煉乳',     imgFile: 'ing-condensed_milk.png', color: '#FFFDF7', badgeColor: '#FDE047', type: 'syrup',       pitch: 698 },
-      brown_sugar:    { id: 'brown_sugar',    name: '黑糖',     imgFile: 'ing-brown_sugar.png',    color: '#5C2C16', badgeColor: '#B45309', type: 'syrup',       pitch: 622 },
-      strawberry_jam: { id: 'strawberry_jam', name: '草莓醬',   imgFile: 'ing-strawberry_jam.png', color: '#D90429', badgeColor: '#FB7185', type: 'syrup',       pitch: 740 },
-      matcha_syrup:   { id: 'matcha_syrup',   name: '抹茶',     imgFile: 'ing-matcha_syrup.png',   color: '#386641', badgeColor: '#22C55E', type: 'syrup',       pitch: 659 },
-      passion_sauce:  { id: 'passion_sauce',  name: '百香果醬', imgFile: 'ing-passion_sauce.png',  color: '#F77F00', badgeColor: '#F97316', type: 'syrup',       pitch: 784, hasSeeds: true },
-      miancha_powder: { id: 'miancha_powder', name: '麵茶粉',   imgFile: 'ing-miancha_powder.png', color: '#C68B59', badgeColor: '#D97706', type: 'powder',      pitch: 523 }
+      red_bean:       { id: 'red_bean',       name: '紅豆',     imgFile: 'ing-red_bean.png',       color: '#8B1E28', badgeColor: '#E63946', type: 'beans',       pitch: 440, role: 'topping' },
+      mung_bean:      { id: 'mung_bean',      name: '綠豆',     imgFile: 'ing-mung_bean.png',      color: '#7E8F35', badgeColor: '#84CC16', type: 'beans',       pitch: 466, role: 'topping' },
+      mango:          { id: 'mango',          name: '芒果',     imgFile: 'ing-mango.png',          color: '#FFA800', badgeColor: '#F59E0B', type: 'chunks',      pitch: 523, role: 'topping' },
+      taro_ball:      { id: 'taro_ball',      name: '芋圓',     imgFile: 'ing-taro_ball.png',      color: '#9B7EDE', badgeColor: '#A855F7', type: 'balls',       pitch: 493, secondaryColor: '#F59E0B', role: 'topping' },
+      boba:           { id: 'boba',           name: '粉圓',     imgFile: 'ing-boba.png',           color: '#2B1810', badgeColor: '#D97706', type: 'boba',        pitch: 392, role: 'topping' },
+      grass_jelly:    { id: 'grass_jelly',    name: '仙草',     imgFile: 'ing-grass_jelly.png',    color: '#231F20', badgeColor: '#64748B', type: 'jelly_cubes', pitch: 415, role: 'topping' },
+      fengkuei:       { id: 'fengkuei',       name: '粉粿',     imgFile: 'ing-fengkuei.png',       color: '#FFD60A', badgeColor: '#EAB308', type: 'jelly_cubes', pitch: 554, role: 'topping' },
+      aiyu:           { id: 'aiyu',           name: '愛玉',     imgFile: 'ing-aiyu.png',           color: '#F59E0B', badgeColor: '#FB923C', type: 'jelly_cubes', pitch: 587, role: 'topping' },
+      peanut:         { id: 'peanut',         name: '花生',     imgFile: 'ing-peanut.png',         color: '#D4A373', badgeColor: '#D97706', type: 'beans',       pitch: 440, role: 'topping' },
+      strawberry:     { id: 'strawberry',     name: '草莓',     imgFile: 'ing-strawberry.png',     color: '#E63946', badgeColor: '#F43F5E', type: 'strawberry',  pitch: 659, role: 'topping' },
+      pineapple:      { id: 'pineapple',      name: '鳳梨',     imgFile: 'ing-pineapple.png',      color: '#FACC15', badgeColor: '#EAB308', type: 'chunks',      pitch: 587, role: 'topping' },
+      tangyuan:       { id: 'tangyuan',       name: '湯圓',     imgFile: 'ing-tangyuan.png',       color: '#FF758F', badgeColor: '#EC4899', type: 'balls',       pitch: 523, secondaryColor: '#FFF8F0', role: 'topping' },
+      miancha_powder: { id: 'miancha_powder', name: '麵茶粉',   imgFile: 'ing-miancha_powder.png', color: '#C68B59', badgeColor: '#D97706', type: 'powder',      pitch: 523, role: 'topping' },
+      condensed_milk: { id: 'condensed_milk', name: '煉乳',     imgFile: 'ing-condensed_milk.png', color: '#FFFDF7', badgeColor: '#FDE047', type: 'syrup',       pitch: 698, role: 'sauce', sauceTitle: '煉乳' },
+      brown_sugar:    { id: 'brown_sugar',    name: '黑糖',     imgFile: 'ing-brown_sugar.png',    color: '#5C2C16', badgeColor: '#B45309', type: 'syrup',       pitch: 622, role: 'sauce', sauceTitle: '黑糖' },
+      strawberry_jam: { id: 'strawberry_jam', name: '草莓醬',   imgFile: 'ing-strawberry_jam.png', color: '#D90429', badgeColor: '#FB7185', type: 'syrup',       pitch: 740, role: 'sauce', sauceTitle: '草莓醬' },
+      matcha_syrup:   { id: 'matcha_syrup',   name: '抹茶',     imgFile: 'ing-matcha_syrup.png',   color: '#386641', badgeColor: '#22C55E', type: 'syrup',       pitch: 659, role: 'sauce', sauceTitle: '抹茶' },
+      passion_sauce:  { id: 'passion_sauce',  name: '百香果醬', imgFile: 'ing-passion_sauce.png',  color: '#F77F00', badgeColor: '#F97316', type: 'syrup',       pitch: 784, role: 'sauce', sauceTitle: '百香果醬', hasSeeds: true }
     };
     const ALL_INGREDIENT_IDS = Object.keys(INGREDIENTS);
+    const TOPPING_IDS = ALL_INGREDIENT_IDS.filter(id => INGREDIENTS[id].role === 'topping');
+    const SAUCE_IDS = ALL_INGREDIENT_IDS.filter(id => INGREDIENTS[id].role === 'sauce');
     ALL_INGREDIENT_IDS.forEach(id => getExternalAsset(INGREDIENTS[id].imgFile));
 
-    // 每道配方皆包含「4 種配料 + 1 種淋醬」（共 5 步）；若切換為「3 樣／碗」，自動取前 2 種配料 + 最後 1 種淋醬
-    const RECIPES = [
-      { id: 'r1',  name: '招牌八寶牛奶冰',     finishedImg: 'recipe-r1.png',  steps5: ['red_bean', 'tangyuan', 'peanut', 'boba', 'condensed_milk'] },
-      { id: 'r2',  name: '芒果愛玉牛奶冰',     finishedImg: 'recipe-r2.png',  steps5: ['mango', 'aiyu', 'fengkuei', 'boba', 'condensed_milk'] },
-      { id: 'r3',  name: '芋圓紅豆黑糖冰',     finishedImg: 'recipe-r3.png',  steps5: ['taro_ball', 'red_bean', 'tangyuan', 'grass_jelly', 'brown_sugar'] },
-      { id: 'r4',  name: '綠豆花生黑糖冰',     finishedImg: 'recipe-r4.png',  steps5: ['mung_bean', 'peanut', 'fengkuei', 'boba', 'brown_sugar'] },
-      { id: 'r5',  name: '粉粿粉圓黑糖冰',     finishedImg: 'recipe-r5.png',  steps5: ['fengkuei', 'boba', 'red_bean', 'taro_ball', 'brown_sugar'] },
-      { id: 'r6',  name: '仙草芋圓牛奶冰',     finishedImg: 'recipe-r6.png',  steps5: ['grass_jelly', 'taro_ball', 'boba', 'peanut', 'condensed_milk'] },
-      { id: 'r7',  name: '草莓雙醬牛奶冰',     finishedImg: 'recipe-r7.png',  steps5: ['strawberry', 'strawberry_jam', 'tangyuan', 'aiyu', 'condensed_milk'] },
-      { id: 'r8',  name: '花生湯圓牛奶冰',     finishedImg: 'recipe-r8.png',  steps5: ['peanut', 'tangyuan', 'red_bean', 'mung_bean', 'condensed_milk'] },
-      { id: 'r9',  name: '鳳梨愛玉百香果冰',   finishedImg: 'recipe-r9.png',  steps5: ['pineapple', 'aiyu', 'mango', 'boba', 'passion_sauce'] },
-      { id: 'r10', name: '粉圓粉粿牛奶冰',     finishedImg: 'recipe-r10.png', steps5: ['boba', 'fengkuei', 'taro_ball', 'red_bean', 'condensed_milk'] },
-      { id: 'r11', name: '紅豆湯圓抹茶冰',     finishedImg: 'recipe-r11.png', steps5: ['red_bean', 'tangyuan', 'taro_ball', 'boba', 'matcha_syrup'] },
-      { id: 'r12', name: '湯圓麵茶黑糖冰',     finishedImg: 'recipe-r12.png', steps5: ['tangyuan', 'miancha_powder', 'peanut', 'red_bean', 'brown_sugar'] },
-      { id: 'r13', name: '粉圓愛玉百香果冰',   finishedImg: 'recipe-r13.png', steps5: ['boba', 'aiyu', 'pineapple', 'fengkuei', 'passion_sauce'] },
-      { id: 'r14', name: '綠豆粉粿牛奶冰',     finishedImg: 'recipe-r14.png', steps5: ['mung_bean', 'fengkuei', 'red_bean', 'peanut', 'condensed_milk'] },
-      { id: 'r15', name: '芒果草莓牛奶冰',     finishedImg: 'recipe-r15.png', steps5: ['mango', 'strawberry', 'aiyu', 'tangyuan', 'condensed_milk'] },
-      { id: 'r16', name: '仙草粉圓黑糖冰',     finishedImg: null,             steps5: ['grass_jelly', 'boba', 'peanut', 'fengkuei', 'brown_sugar'] },
-      { id: 'r17', name: '紅豆綠豆牛奶冰',     finishedImg: null,             steps5: ['red_bean', 'mung_bean', 'taro_ball', 'boba', 'condensed_milk'] },
-      { id: 'r18', name: '芋圓湯圓抹茶冰',     finishedImg: null,             steps5: ['taro_ball', 'tangyuan', 'red_bean', 'fengkuei', 'matcha_syrup'] },
-      { id: 'r19', name: '芒果鳳梨百香果冰',   finishedImg: null,             steps5: ['mango', 'pineapple', 'strawberry', 'aiyu', 'passion_sauce'] },
-      { id: 'r20', name: '花生麵茶黑糖冰',     finishedImg: null,             steps5: ['peanut', 'miancha_powder', 'boba', 'taro_ball', 'brown_sugar'] }
+    // 28 款台灣在地特色經典組合（包裝有風味，且保留完整食材原名讓認知猜題 100% 猜得出來）
+    const SIGNATURE_RECIPES = [
+      { id: 'sig1',  name: '相思紅豆湯圓煉乳冰',     steps: ['red_bean', 'tangyuan', 'condensed_milk'] },
+      { id: 'sig2',  name: '九份芋圓紅豆黑糖冰',     steps: ['taro_ball', 'red_bean', 'brown_sugar'] },
+      { id: 'sig3',  name: '夏日芒果愛玉煉乳冰',     steps: ['mango', 'aiyu', 'condensed_milk'] },
+      { id: 'sig4',  name: '古早味綠豆花生黑糖冰',   steps: ['mung_bean', 'peanut', 'brown_sugar'] },
+      { id: 'sig5',  name: '關西仙草芋圓煉乳冰',     steps: ['grass_jelly', 'taro_ball', 'condensed_milk'] },
+      { id: 'sig6',  name: '懷舊粉粿粉圓黑糖冰',     steps: ['fengkuei', 'boba', 'brown_sugar'] },
+      { id: 'sig7',  name: '大湖草莓煉乳冰',         steps: ['strawberry', 'strawberry_jam', 'condensed_milk'] },
+      { id: 'sig8',  name: '北港花生湯圓煉乳冰',     steps: ['peanut', 'tangyuan', 'condensed_milk'] },
+      { id: 'sig9',  name: '阿里山鳳梨愛玉百香果冰', steps: ['pineapple', 'aiyu', 'passion_sauce'] },
+      { id: 'sig10', name: '黑糖珍奶粉圓粉粿煉乳冰', steps: ['boba', 'fengkuei', 'condensed_milk'] },
+      { id: 'sig11', name: '宇治金時紅豆湯圓抹茶冰', steps: ['red_bean', 'tangyuan', 'matcha_syrup'] },
+      { id: 'sig12', name: '鹿港麵茶粉湯圓黑糖冰',   steps: ['tangyuan', 'miancha_powder', 'brown_sugar'] },
+      { id: 'sig13', name: '百香雙響粉圓愛玉百香果冰', steps: ['boba', 'aiyu', 'passion_sauce'] },
+      { id: 'sig14', name: '彰化綠豆粉粿煉乳冰',     steps: ['mung_bean', 'fengkuei', 'condensed_milk'] },
+      { id: 'sig15', name: '寶島芒果草莓煉乳冰',     steps: ['mango', 'strawberry', 'condensed_milk'] },
+      { id: 'sig16', name: '燒仙草風味仙草粉圓黑糖冰', steps: ['grass_jelly', 'boba', 'brown_sugar'] },
+      { id: 'sig17', name: '雙豆經典紅豆綠豆煉乳冰', steps: ['red_bean', 'mung_bean', 'condensed_milk'] },
+      { id: 'sig18', name: '京都風芋圓湯圓抹茶冰',   steps: ['taro_ball', 'tangyuan', 'matcha_syrup'] },
+      { id: 'sig19', name: '熱帶風情芒果鳳梨百香果冰', steps: ['mango', 'pineapple', 'passion_sauce'] },
+      { id: 'sig20', name: '懷舊古早花生麵茶粉黑糖冰', steps: ['peanut', 'miancha_powder', 'brown_sugar'] },
+      { id: 'sig21', name: '粉嫩草莓芋圓煉乳冰',     steps: ['strawberry', 'taro_ball', 'condensed_milk'] },
+      { id: 'sig22', name: '清涼退火仙草愛玉黑糖冰', steps: ['grass_jelly', 'aiyu', 'brown_sugar'] },
+      { id: 'sig23', name: '抹茶控紅豆粉粿抹茶冰',   steps: ['red_bean', 'fengkuei', 'matcha_syrup'] },
+      { id: 'sig24', name: '酸甜滋味鳳梨粉圓百香果冰', steps: ['pineapple', 'boba', 'passion_sauce'] },
+      { id: 'sig25', name: '團圓好運湯圓粉圓黑糖冰', steps: ['tangyuan', 'boba', 'brown_sugar'] },
+      { id: 'sig26', name: '香濃花生芋圓煉乳冰',     steps: ['peanut', 'taro_ball', 'condensed_milk'] },
+      { id: 'sig27', name: '黃金芒果粉粿煉乳冰',     steps: ['mango', 'fengkuei', 'condensed_milk'] },
+      { id: 'sig28', name: '莓果派對草莓粉圓草莓醬冰', steps: ['strawberry', 'boba', 'strawberry_jam'] }
     ];
-    RECIPES.forEach(r => { if (r.finishedImg) getExternalAsset(r.finishedImg); });
 
-    const getRecipeSteps = (recipe) => {
-      if (config.stepCount === 3) {
-        return [recipe.steps5[0], recipe.steps5[1], recipe.steps5[4]];
+    const DYNAMIC_PREFIXES = [
+      '冰果室招牌', '古早味', '阿嬤手路', '夜市人氣', '巷口老店',
+      '懷舊限定', '夏日特調', '老闆推薦', '職人手作', '經典人氣',
+      '在地好味', '沁涼特選', '復古風味', '台灣味'
+    ];
+
+    function generateDynamicRecipe(usedKeys) {
+      for (let attempt = 0; attempt < 60; attempt++) {
+        const t1 = TOPPING_IDS[Math.floor(Math.random() * TOPPING_IDS.length)];
+        let t2 = TOPPING_IDS[Math.floor(Math.random() * TOPPING_IDS.length)];
+        if (t2 === t1) continue;
+        const sauce = SAUCE_IDS[Math.floor(Math.random() * SAUCE_IDS.length)];
+        const key = `${[t1, t2].sort().join('+')}+${sauce}`;
+        if (usedKeys.has(key)) continue;
+
+        usedKeys.add(key);
+        const prefix = DYNAMIC_PREFIXES[Math.floor(Math.random() * DYNAMIC_PREFIXES.length)];
+        const name = `${prefix}・${INGREDIENTS[t1].name}${INGREDIENTS[t2].name}${INGREDIENTS[sauce].sauceTitle}冰`;
+        return {
+          id: `dyn_${key}_${Math.random().toString(36).slice(2, 6)}`,
+          name,
+          steps: [t1, t2, sauce]
+        };
       }
-      return recipe.steps5;
-    };
+      return SIGNATURE_RECIPES[Math.floor(Math.random() * SIGNATURE_RECIPES.length)];
+    }
+
+    function buildSessionMenu(count) {
+      const usedKeys = new Set();
+      const sigShuffled = shuffleArray(SIGNATURE_RECIPES);
+      const menu = [];
+
+      // 交錯放入經典在地特色組合與動態隨機組合，每次開局都有新鮮感且不重複
+      let sigIdx = 0;
+      for (let i = 0; i < count; i++) {
+        if (i % 2 === 0 && sigIdx < sigShuffled.length) {
+          const r = sigShuffled[sigIdx++];
+          const key = `${[r.steps[0], r.steps[1]].sort().join('+')}+${r.steps[2]}`;
+          usedKeys.add(key);
+          menu.push({ ...r });
+        } else {
+          menu.push(generateDynamicRecipe(usedKeys));
+        }
+      }
+      return shuffleArray(menu);
+    }
 
     /********************************************************************
      * 4. Web Audio API 音效與台灣中文語音播報 (TTS)
@@ -1216,7 +1266,7 @@
         window.speechSynthesis.cancel();
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = 'zh-TW';
-        utter.rate = 0.98;
+        utter.rate = 1.0;
         utter.pitch = 1.04;
         const twVoice = window.speechSynthesis.getVoices().find(v => v.lang && (v.lang.includes('zh-TW') || v.lang.includes('zh_TW')));
         if (twVoice) utter.voice = twVoice;
@@ -1225,16 +1275,15 @@
     }
 
     /********************************************************************
-     * 5. 全域設定與遊戲狀態（4 種遊戲模式：ACTION / FIND / MEMORY_ORDER / MEMORY_QUIZ）
+     * 5. 全域設定與遊戲狀態
      ********************************************************************/
     const config = {
       gameMode: 'ACTION',      // 'ACTION' | 'FIND' | 'MEMORY_ORDER' | 'MEMORY_QUIZ'
+      trackMode: 'HAND',       // 'HAND' | 'COLOR' | 'TOUCH'
       spaceLevel: 1,
       level1Dir: 'L2R',
       seqMode: 'ALT',
-      trackMode: 'HAND',       // 'HAND' | 'COLOR' | 'TOUCH'
-      stepCount: 5,            // 5 樣（4 料＋1 醬）或 3 樣（2 料＋1 醬）
-      memorizeSeconds: 6,      // 點餐記憶模式的開局看單秒數
+      memorizeSeconds: 6,
       dwellSeconds: 0.6,
       requireReturn: true,
       ttsEnabled: true,
@@ -1267,7 +1316,8 @@
 
       menuQueue: [],
       currentBowlIndex: 0,
-      currentStepIndex: 0,
+      completedStepsSet: new Set(), // 記錄本碗已完成的食材 ID（支援點餐記憶不限順序）
+      activeTargetIngId: null,     // 目前正在挖／拿的目標食材 ID
       completedBowlsList: [],
       totalActionsDone: 0,
       sessionStartTime: performance.now(),
@@ -1275,6 +1325,7 @@
       phase: 'GO_SCOOP',       // 'ORDER_MEMORIZE' | 'GO_SCOOP' | 'GO_POUR' | 'BOWL_QUIZ' | 'BOWL_CELEBRATE'
       memorizeTimer: 0,
       peekTimer: 0,
+      quizCooldownTimer: 0,    // 猜口味思考冷卻計時器（1.5 秒內防誤觸）
       carryingIngredient: null,
       quizOptions: [],
       quizDwellId: null,
@@ -1284,6 +1335,7 @@
       altCounter: 0,
 
       dwellElapsed: 0,
+      dwellBasinId: null,
       lastDwellTickSound: 0,
       lockedZoneId: null,
       celebrateTimer: 0,
@@ -1301,7 +1353,7 @@
       cursorY: 0.55,
       targetCursorX: 0.5,
       targetCursorY: 0.55,
-      lastHandSeenTime: 0,
+      lastTrackValidTime: 0,   // 最新有效座標時間戳（超過 350ms 立即凍結判定，防止沿用舊座標誤判）
       detectedHandLabel: ''
     };
 
@@ -1318,11 +1370,15 @@
       'https://unpkg.com/@mediapipe/hands/hands.js'
     ];
 
-    // 判斷目前模式是否需要「多盆擺放並隱藏箭頭」
     const isMultiBasinFindMode = () => ['FIND', 'MEMORY_ORDER', 'MEMORY_QUIZ'].includes(config.gameMode);
 
+    function hasFreshTracking(now = performance.now()) {
+      if (!state.cameraActive || config.trackMode === 'TOUCH') return true;
+      return (now - state.lastTrackValidTime) <= 350;
+    }
+
     /********************************************************************
-     * 6. 雙引擎追蹤系統：手部體感 ＋ 物品顏色感測
+     * 6. 雙引擎追蹤系統：手部體感 ＋ 物品顏色感測（含座標有效性保護）
      ********************************************************************/
     function loadScriptWithFallback(urls) {
       return new Promise((resolve, reject) => {
@@ -1458,6 +1514,7 @@
       state.awaitingColorPick = false;
       state.lastColorPos = { x: wx, y: wy };
       state.colorLostFrames = 0;
+      state.lastTrackValidTime = performance.now();
       document.getElementById('color-swatch').style.background = `rgb(${state.colorTarget.r},${state.colorTarget.g},${state.colorTarget.b})`;
       document.getElementById('status-dot').className = 'status-dot cam-on';
       document.getElementById('tracking-text').textContent = '🎨 已鎖定物品顏色！移動物品即可操作';
@@ -1547,16 +1604,16 @@
         if (norm) {
           state.targetCursorX = norm.x;
           state.targetCursorY = norm.y;
-          state.lastHandSeenTime = now;
+          state.lastTrackValidTime = now;
           statusDot.className = 'status-dot cam-on';
           trackingText.textContent = '🎨 顏色追蹤中｜螢幕恆亮中';
         }
       } else {
         state.colorLostFrames++;
-        if (state.colorLostFrames >= 6) {
+        if (state.colorLostFrames >= 4) {
           state.lastColorPos = null;
           statusDot.className = 'status-dot cam-warn';
-          trackingText.textContent = '🔍 找不到選定顏色，請將物品移入畫面或點「重新選色」';
+          trackingText.textContent = '🔍 找不到選定顏色，已暫停判定（請將物品移入畫面）';
         }
       }
     }
@@ -1579,9 +1636,9 @@
           state.missCount++;
           state.zeroDetectStreak++;
           if (!state.useWorkCanvasFallback && state.zeroDetectStreak >= 25 && video.videoWidth > 0) state.useWorkCanvasFallback = true;
-          if (state.missCount >= 4 && (now - state.lastHandSeenTime > 550)) {
+          if (state.missCount >= 3 && (now - state.lastTrackValidTime > 350)) {
             statusDot.className = 'status-dot cam-warn';
-            trackingText.textContent = '📷 鏡頭開啟中｜請將手舉起進入畫面（點擊可關閉）';
+            trackingText.textContent = '📷 未偵測到手部，已暫停判定（請將手舉起進入畫面）';
           }
           return;
         }
@@ -1610,7 +1667,7 @@
           state.missCount = 0;
           state.targetCursorX = norm.x;
           state.targetCursorY = norm.y;
-          state.lastHandSeenTime = now;
+          state.lastTrackValidTime = now;
           statusDot.className = 'status-dot cam-on';
           trackingText.textContent = `✋ 穩定追蹤【${state.detectedHandLabel}】｜螢幕恆亮中`;
         }
@@ -1660,13 +1717,14 @@
         state.missCount = 0;
         state.zeroDetectStreak = 0;
         state.previousVideoTime = -1;
+        state.lastTrackValidTime = 0;
 
         repickBtn.classList.toggle('visible', config.trackMode === 'COLOR');
         if (config.trackMode === 'COLOR') {
           statusDot.className = state.colorTarget ? 'status-dot cam-on' : 'status-dot cam-warn';
           trackingText.textContent = state.colorTarget ? '🎨 顏色追蹤中｜移動物品即可操作' : '👆 請直接點擊畫面上的彩色物品／握把取色！';
         } else {
-          statusDot.className = 'status-dot cam-on';
+          statusDot.className = 'status-dot cam-warn';
           trackingText.textContent = '📷 鏡頭已啟動！請將手舉起進入畫面';
         }
 
@@ -1736,7 +1794,7 @@
     }
 
     /********************************************************************
-     * 7. 空間大區塊配置與 4 種遊戲模式邏輯
+     * 7. 空間大區塊配置與 4 種遊戲模式邏輯（含點餐記憶不限順序 & 猜口味防誤觸）
      ********************************************************************/
     function getPlayAreaBounds(w, h) {
       const isLandscapeSidebar = (w > h && w >= 680);
@@ -1817,11 +1875,8 @@
       state.inSummary = false;
       document.getElementById('summary-modal').classList.remove('open');
 
-      let pool = shuffleArray(RECIPES);
-      while (pool.length < config.targetBowls) pool = pool.concat(shuffleArray(RECIPES));
-      state.menuQueue = pool.slice(0, config.targetBowls);
+      state.menuQueue = buildSessionMenu(config.targetBowls);
       state.currentBowlIndex = 0;
-      state.currentStepIndex = 0;
       state.completedBowlsList = [];
       state.totalActionsDone = 0;
       state.sessionStartTime = performance.now();
@@ -1834,25 +1889,26 @@
       startNewBowl();
     }
 
-    const getCurrentRecipe = () => state.menuQueue[state.currentBowlIndex] || RECIPES[0];
-    const getCurrentIngredient = () => {
-      const steps = getRecipeSteps(getCurrentRecipe());
-      return INGREDIENTS[steps[state.currentStepIndex] || steps[0]];
+    const getCurrentRecipe = () => state.menuQueue[state.currentBowlIndex] || SIGNATURE_RECIPES[0];
+    const getRemainingIngIds = () => getCurrentRecipe().steps.filter(id => !state.completedStepsSet.has(id));
+    const getActiveIngredient = () => {
+      const rem = getRemainingIngIds();
+      const targetId = (state.activeTargetIngId && rem.includes(state.activeTargetIngId)) ? state.activeTargetIngId : (rem[0] || getCurrentRecipe().steps[0]);
+      return INGREDIENTS[targetId];
     };
 
     function startNewBowl() {
       state.currentBowlLayers = [];
-      state.currentStepIndex = 0;
+      state.completedStepsSet = new Set();
+      state.activeTargetIngId = getCurrentRecipe().steps[0];
       state.peekTimer = 0;
-      assignBasinsForCurrentStep();
 
       if (config.gameMode === 'MEMORY_ORDER') {
-        // 點餐記憶模式：先展示整碗點餐內容並語音唸出，倒數結束後蓋牌自己拿
         state.phase = 'ORDER_MEMORIZE';
         state.memorizeTimer = config.memorizeSeconds;
         updateHUD();
         if (!state.paused) {
-          const names = getRecipeSteps(getCurrentRecipe()).map(id => INGREDIENTS[id].name).join('、');
+          const names = getCurrentRecipe().steps.map(id => INGREDIENTS[id].name).join('、');
           speakText(`請記住：${names}`);
         }
       } else {
@@ -1875,9 +1931,12 @@
 
     function assignBasinsForCurrentStep() {
       const basinIds = getAvailableBasinZoneIds();
-      const targetIng = getCurrentIngredient();
-      let chosenId = basinIds[0];
+      const remIds = getRemainingIngIds();
+      const primaryTargetId = remIds[0] || getCurrentRecipe().steps[0];
+      state.activeTargetIngId = primaryTargetId;
+      const targetIng = INGREDIENTS[primaryTargetId];
 
+      let chosenId = basinIds[0];
       if (basinIds.length > 1) {
         if (isMultiBasinFindMode()) {
           const otherBasins = basinIds.filter(id => id !== state.activeBasinZoneId);
@@ -1900,14 +1959,20 @@
       state.basinMap = { [chosenId]: targetIng };
 
       if (isMultiBasinFindMode()) {
-        const distractors = shuffleArray(ALL_INGREDIENT_IDS.filter(id => id !== targetIng.id));
+        // 點餐記憶模式下，盡可能把尚未完成的其他配料也一起擺出來（最多不超過盆數-1，確保至少有 1 個干擾盆）
+        const otherRemIds = (config.gameMode === 'MEMORY_ORDER')
+          ? shuffleArray(remIds.filter(id => id !== primaryTargetId)).slice(0, Math.max(0, basinIds.length - 2))
+          : [];
+        const distractors = shuffleArray(ALL_INGREDIENT_IDS.filter(id => !remIds.includes(id) && !state.completedStepsSet.has(id)));
+        const fillPool = [...otherRemIds, ...distractors];
+
         let dIdx = 0;
         basinIds.forEach(id => {
           if (id !== chosenId) {
-            let pickId = distractors[dIdx % distractors.length];
-            if (prevMap[id] && prevMap[id].id === pickId && distractors.length > basinIds.length) {
+            let pickId = fillPool[dIdx % fillPool.length];
+            if (prevMap[id] && prevMap[id].id === pickId && fillPool.length > basinIds.length) {
               dIdx++;
-              pickId = distractors[dIdx % distractors.length];
+              pickId = fillPool[dIdx % fillPool.length];
             }
             state.basinMap[id] = INGREDIENTS[pickId];
             dIdx++;
@@ -1922,16 +1987,16 @@
       state.phase = 'GO_SCOOP';
       state.carryingIngredient = null;
       state.dwellElapsed = 0;
+      state.dwellBasinId = null;
       updateHUD();
-      // 點餐記憶模式下不語音提示下一步食材（考驗工作記憶），其他模式直接唸出食材原名
       if (!state.paused && config.gameMode !== 'MEMORY_ORDER') {
-        speakText(getCurrentIngredient().name);
+        speakText(getActiveIngredient().name);
       }
     }
 
     function updateHUD() {
       const recipe = getCurrentRecipe();
-      const steps = getRecipeSteps(recipe);
+      const steps = recipe.steps;
       const isMemOrder = (config.gameMode === 'MEMORY_ORDER');
       const isMemQuiz = (config.gameMode === 'MEMORY_QUIZ');
       const isPeeking = state.peekTimer > 0;
@@ -1943,18 +2008,18 @@
       document.getElementById('peek-order-btn').classList.toggle('visible', isMemOrder && (state.phase === 'GO_SCOOP' || state.phase === 'GO_POUR'));
 
       const actionLine = document.getElementById('hud-action-line');
-      const currentIng = getCurrentIngredient();
+      const currentIng = getActiveIngredient();
       if (state.phase === 'BOWL_CELEBRATE') {
-        const iconSrc = recipe.finishedImg ? `./images/${recipe.finishedImg}` : './images/bowl-empty.png';
-        actionLine.innerHTML = `<img class="hud-mini-icon" src="${iconSrc}" onerror="this.style.display='none'" alt=""><span>${recipe.name}完成</span>`;
+        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/bowl-empty.png" onerror="this.style.display='none'" alt=""><span>${recipe.name}完成</span>`;
       } else if (state.phase === 'BOWL_QUIZ') {
-        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/bowl-empty.png" onerror="this.style.display='none'" alt=""><span>選出剛剛做的冰</span>`;
+        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/bowl-empty.png" onerror="this.style.display='none'" alt=""><span>想一想，剛剛做的是哪一碗冰？</span>`;
       } else if (state.phase === 'ORDER_MEMORIZE') {
-        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/bowl-empty.png" onerror="this.style.display='none'" alt=""><span>記住順序（${Math.ceil(state.memorizeTimer)} 秒後開始）</span>`;
+        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/bowl-empty.png" onerror="this.style.display='none'" alt=""><span>記住這 3 樣（${Math.ceil(state.memorizeTimer)} 秒後開始）</span>`;
       } else if (state.phase === 'GO_POUR') {
-        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/bowl-empty.png" onerror="this.style.display='none'" alt=""><span>${currentIng.name}，放回冰碗</span>`;
+        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/bowl-empty.png" onerror="this.style.display='none'" alt=""><span>放回冰碗</span>`;
       } else if (isMemOrder && !isPeeking) {
-        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/spoon.png" onerror="this.style.display='none'" alt=""><span>憑記憶選出第 ${state.currentStepIndex + 1} 樣配料</span>`;
+        const doneCount = state.completedStepsSet.size;
+        actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/spoon.png" onerror="this.style.display='none'" alt=""><span>憑記憶找料（已完成 ${doneCount} / ${steps.length} 樣）</span>`;
       } else {
         actionLine.innerHTML = `<img class="hud-mini-icon" src="./images/${currentIng.imgFile}" onerror="this.style.display='none'" alt=""><span>${currentIng.name}</span>`;
       }
@@ -1964,13 +2029,13 @@
       steps.forEach((ingId, idx) => {
         const ing = INGREDIENTS[ingId];
         const pill = document.createElement('div');
-        const isDone = idx < state.currentStepIndex || state.phase === 'BOWL_CELEBRATE' || state.phase === 'BOWL_QUIZ';
-        const isActive = idx === state.currentStepIndex && !['BOWL_CELEBRATE', 'BOWL_QUIZ', 'ORDER_MEMORIZE'].includes(state.phase);
+        const isDone = state.completedStepsSet.has(ingId) || state.phase === 'BOWL_CELEBRATE' || state.phase === 'BOWL_QUIZ';
+        const isActive = !isDone && !isMemOrder && (ingId === state.activeTargetIngId) && !['BOWL_CELEBRATE', 'BOWL_QUIZ', 'ORDER_MEMORIZE'].includes(state.phase);
         const maskFuture = isMemOrder && state.phase !== 'ORDER_MEMORIZE' && state.phase !== 'BOWL_CELEBRATE' && !isDone && !isPeeking;
 
         pill.className = 'ing-step-pill' + (isDone ? ' done' : (isActive ? ' active' : ''));
         if (isDone) pill.textContent = `✓ ${ing.name}`;
-        else if (maskFuture) pill.textContent = isActive ? `● 第 ${idx + 1} 樣` : `?`;
+        else if (maskFuture) pill.textContent = `?`;
         else pill.textContent = isActive ? `● ${ing.name}` : ing.name;
         pillsContainer.appendChild(pill);
       });
@@ -1981,15 +2046,19 @@
       const bowlY = bowlZone.y + bowlZone.h * 0.54;
       const bowlR = getZoneBowlRadius(bowlZone);
 
-      const dropCount = ing.type === 'syrup' ? 12 : 16;
+      // 左右分區擺放第 1 種與第 2 種固體配料，確保視覺清清楚楚不重疊
+      const toppingIndex = state.currentBowlLayers.filter(l => l.ing.role === 'topping').length;
+      const sideOffset = (ing.role === 'topping') ? (toppingIndex === 0 ? -0.36 : 0.36) : 0;
+
+      const dropCount = ing.type === 'syrup' ? 12 : 15;
       for (let i = 0; i < dropCount; i++) {
-        const spreadX = (Math.random() - 0.5) * bowlR * 1.1;
+        const spreadX = (sideOffset + (Math.random() - 0.5) * 0.55) * bowlR;
         state.fallingDrops.push({
           ing,
           x: fromX + (Math.random() - 0.5) * 40,
           y: fromY + (Math.random() - 0.5) * 40,
           targetX: bowlX + spreadX,
-          targetY: bowlY - bowlR * 0.18 - Math.abs(spreadX) * 0.32 + (Math.random() - 0.5) * 14,
+          targetY: bowlY - bowlR * 0.22 + (Math.random() - 0.5) * 16,
           progress: 0,
           speed: 2.5 + Math.random(),
           size: ['chunks', 'jelly_cubes', 'strawberry'].includes(ing.type) ? 15 + Math.random() * 4 : 10 + Math.random() * 4,
@@ -1997,14 +2066,15 @@
         });
       }
 
-      const count = ing.type === 'syrup' ? 8 : (ing.type === 'powder' ? 24 : 16);
+      const count = ing.type === 'syrup' ? 8 : (ing.type === 'powder' ? 22 : 12);
       const layerItems = Array.from({ length: count }, (_, i) => {
-        const rx = (Math.random() - 0.5) * 1.3;
+        const localRx = (Math.random() - 0.5) * 0.72;
+        const rx = ing.role === 'topping' ? (sideOffset * 1.45 + localRx) : (Math.random() - 0.5) * 1.3;
         return {
           rx,
-          ry: -0.14 - (1 - rx * rx * 0.52) * (0.2 + Math.random() * 0.45),
-          size: ['beans', 'boba'].includes(ing.type) ? 0.085 + Math.random() * 0.025 : 0.13 + Math.random() * 0.04,
-          rot: (Math.random() - 0.5) * 0.9,
+          ry: -0.16 - (1 - Math.min(1, rx * rx * 0.45)) * (0.18 + Math.random() * 0.42),
+          size: ['beans', 'boba'].includes(ing.type) ? 0.095 + Math.random() * 0.025 : 0.145 + Math.random() * 0.035,
+          rot: (Math.random() - 0.5) * 0.85,
           variant: i % 2
         };
       });
@@ -2054,9 +2124,14 @@
     function updateGameLogic(dt, w, h) {
       if (state.paused || state.inSummary) return;
 
-      const smooth = Math.min(1, dt * 16);
-      state.cursorX += (state.targetCursorX - state.cursorX) * smooth;
-      state.cursorY += (state.targetCursorY - state.cursorY) * smooth;
+      const now = performance.now();
+      const trackingFresh = hasFreshTracking(now);
+
+      if (trackingFresh) {
+        const smooth = Math.min(1, dt * 16);
+        state.cursorX += (state.targetCursorX - state.cursorX) * smooth;
+        state.cursorY += (state.targetCursorY - state.cursorY) * smooth;
+      }
 
       const px = state.cursorX * w;
       const py = state.cursorY * h;
@@ -2068,8 +2143,10 @@
         if (state.peekTimer === 0) updateHUD();
       }
 
-      state.spoonTrail.push({ x: px, y: py, alpha: 1 });
-      if (state.spoonTrail.length > 10) state.spoonTrail.shift();
+      if (trackingFresh) {
+        state.spoonTrail.push({ x: px, y: py, alpha: 1 });
+        if (state.spoonTrail.length > 10) state.spoonTrail.shift();
+      }
       state.spoonTrail.forEach(pt => { pt.alpha -= dt * 3.8; });
       state.spoonTrail = state.spoonTrail.filter(pt => pt.alpha > 0);
 
@@ -2115,10 +2192,23 @@
         return;
       }
 
+      // 沒有新鮮有效的追蹤座標時，立刻停止所有挖料、倒料與猜題判定（絕不沿用舊座標誤判！）
+      if (!trackingFresh) {
+        state.dwellElapsed = Math.max(0, state.dwellElapsed - dt * 1.2);
+        state.quizDwellElapsed = Math.max(0, state.quizDwellElapsed - dt * 1.2);
+        return;
+      }
+
       if (state.phase === 'BOWL_QUIZ') {
+        // 先給 1.5 秒思考冷卻時間，讓個案先看清楚 3 碗冰再選，防止剛跳出畫面就誤觸
+        if (state.quizCooldownTimer > 0) {
+          state.quizCooldownTimer = Math.max(0, state.quizCooldownTimer - dt);
+          return;
+        }
+
         const cards = getQuizCardRects(getPlayAreaBounds(w, h));
         const hovered = cards.find(c => isPointInZone(px, py, c, 4));
-        const holdNeed = Math.max(0.45, config.dwellSeconds);
+        const holdNeed = Math.max(1.2, config.dwellSeconds);
 
         if (hovered && state.lockedZoneId !== hovered.recipe.id) {
           if (state.quizDwellId !== hovered.recipe.id) {
@@ -2134,7 +2224,7 @@
               triggerBowlCelebrate(targetRecipe, w, h);
             } else {
               sound.playWrongHint();
-              const ingNames = getRecipeSteps(targetRecipe).map(id => INGREDIENTS[id].name).join('、');
+              const ingNames = targetRecipe.steps.map(id => INGREDIENTS[id].name).join('、');
               speakText(ingNames);
               spawnFloatingText(hovered.x + hovered.w * 0.5, hovered.y + hovered.h * 0.4, `提示：${ingNames}`, '#FFE49E', 0.95);
             }
@@ -2155,77 +2245,94 @@
         if (!lockedZone || !isPointInZone(px, py, lockedZone, 16)) state.lockedZoneId = null;
       }
 
-      const now = performance.now();
-      const handLostGrace = state.cameraActive && (now - state.lastHandSeenTime > 120) && (now - state.lastHandSeenTime < 600);
-      if (handLostGrace) return;
-
       if (state.phase === 'GO_SCOOP') {
-        const correctBasinZone = zones.find(z => z.id === state.activeBasinZoneId);
-        if (!correctBasinZone) return;
+        const remIds = getRemainingIngIds();
+        // 在點餐記憶模式下，只要這盆裡的食材是本碗還沒拿過的（不限順序），都算正確目標盆！
+        const validZones = zones.filter(z => {
+          if (z.role !== 'basin' || !state.basinMap[z.id]) return false;
+          if (config.gameMode === 'MEMORY_ORDER') return remIds.includes(state.basinMap[z.id].id);
+          return z.id === state.activeBasinZoneId;
+        });
 
         const expandMargin = state.dwellElapsed > 0 ? 28 : 8;
-        if (isPointInZone(px, py, correctBasinZone, expandMargin) && state.lockedZoneId !== correctBasinZone.id) {
+        const hitValidZone = validZones.find(z => isPointInZone(px, py, z, expandMargin) && state.lockedZoneId !== z.id);
+
+        if (hitValidZone) {
+          const pickedIng = state.basinMap[hitValidZone.id];
+          state.activeTargetIngId = pickedIng.id;
+
           if (config.dwellSeconds <= 0) {
-            onScoopCompleted(correctBasinZone, bowlZone, px, py, w, h);
+            onScoopCompleted(hitValidZone, pickedIng, bowlZone, px, py, w, h);
           } else {
+            if (state.dwellBasinId !== hitValidZone.id) {
+              state.dwellBasinId = hitValidZone.id;
+              state.dwellElapsed = 0;
+            }
             state.dwellElapsed += dt;
             if (state.dwellElapsed - state.lastDwellTickSound >= 0.2) {
               state.lastDwellTickSound = state.dwellElapsed;
               sound.playDwellTick(Math.min(1, state.dwellElapsed / config.dwellSeconds));
             }
             if (state.dwellElapsed >= config.dwellSeconds) {
-              onScoopCompleted(correctBasinZone, bowlZone, px, py, w, h);
+              onScoopCompleted(hitValidZone, pickedIng, bowlZone, px, py, w, h);
             }
           }
         } else {
           if (isMultiBasinFindMode()) {
-            const wrongZone = zones.find(z => z.role === 'basin' && z.id !== state.activeBasinZoneId && state.basinMap[z.id] && isPointInZone(px, py, z, -8));
+            const wrongZone = zones.find(z => {
+              if (z.role !== 'basin' || !state.basinMap[z.id]) return false;
+              const isValid = validZones.some(vz => vz.id === z.id);
+              return !isValid && isPointInZone(px, py, z, -8);
+            });
             if (wrongZone && state.lockedZoneId !== wrongZone.id) {
               state.lockedZoneId = wrongZone.id;
               const wrongIng = state.basinMap[wrongZone.id];
-              const rightIng = getCurrentIngredient();
+              const rightIng = getActiveIngredient();
               sound.playWrongHint();
-              const msg = config.gameMode === 'MEMORY_ORDER' ? `不是${wrongIng.name}喔，再想一想` : `這是${wrongIng.name}，要找${rightIng.name}`;
+              const msg = config.gameMode === 'MEMORY_ORDER' ? `這碗沒有${wrongIng.name}喔，再想一想` : `這是${wrongIng.name}，要找${rightIng.name}`;
               spawnFloatingText(wrongZone.x + wrongZone.w * 0.5, wrongZone.y + wrongZone.h * 0.45, msg, '#FFE49E', 0.95);
             }
           }
           state.dwellElapsed = Math.max(0, state.dwellElapsed - dt * 1.6);
+          if (state.dwellElapsed === 0) state.dwellBasinId = null;
         }
       } else if (state.phase === 'GO_POUR' && bowlZone && state.lockedZoneId !== 'bowl') {
         if (isPointInZone(px, py, bowlZone, 14)) completePourIntoBowl(bowlZone, px, py, w, h);
       }
     }
 
-    function onScoopCompleted(basinZone, bowlZone, px, py, w, h) {
-      const ing = getCurrentIngredient();
+    function onScoopCompleted(basinZone, pickedIng, bowlZone, px, py, w, h) {
       state.lockedZoneId = basinZone.id;
       state.dwellElapsed = 0;
+      state.dwellBasinId = null;
       sound.playScoop();
-      spawnSuccessParticles(px, py, ing.badgeColor, 16);
+      spawnSuccessParticles(px, py, pickedIng.badgeColor, 16);
 
       if (config.requireReturn) {
-        state.carryingIngredient = ing;
+        state.carryingIngredient = pickedIng;
         state.phase = 'GO_POUR';
-        speakText(`${ing.name}，放回冰碗`);
+        // 直接唸「放回冰碗」，不再重複唸食材名稱
+        speakText('放回冰碗');
         updateHUD();
       } else {
+        state.carryingIngredient = pickedIng;
         completePourIntoBowl(bowlZone, basinZone.x + basinZone.w * 0.5, basinZone.y + basinZone.h * 0.5, w, h);
       }
     }
 
     function completePourIntoBowl(bowlZone, fromX, fromY, w, h) {
-      const ing = getCurrentIngredient();
+      const ing = state.carryingIngredient || getActiveIngredient();
       state.lockedZoneId = 'bowl';
       state.carryingIngredient = null;
       state.totalActionsDone++;
+      state.completedStepsSet.add(ing.id);
 
       addIngredientToMainBowl(bowlZone, fromX, fromY, ing);
 
       const recipe = getCurrentRecipe();
-      const steps = getRecipeSteps(recipe);
-      state.currentStepIndex++;
+      const rem = getRemainingIngIds();
 
-      if (state.currentStepIndex >= steps.length) {
+      if (rem.length === 0) {
         if (config.gameMode === 'MEMORY_QUIZ') startBowlMemoryQuiz(recipe);
         else triggerBowlCelebrate(recipe, w, h);
       } else {
@@ -2254,8 +2361,23 @@
       state.phase = 'BOWL_QUIZ';
       state.quizDwellId = null;
       state.quizDwellElapsed = 0;
-      const others = shuffleArray(RECIPES.filter(r => r.id !== targetRecipe.id)).slice(0, 2);
-      state.quizOptions = shuffleArray([targetRecipe, ...others]);
+      state.quizCooldownTimer = 1.5; // 1.5 秒思考保護期，避免游標剛好停在卡片位置就直接選中
+      state.lockedZoneId = null;
+
+      // 生成 2 個配料與淋醬明顯不同的干擾選項，讓長輩有線索可推理
+      const usedKeys = new Set([`${[targetRecipe.steps[0], targetRecipe.steps[1]].sort().join('+')}+${targetRecipe.steps[2]}`]);
+      const distractors = [];
+      const diffSaucePool = shuffleArray(SIGNATURE_RECIPES.filter(r => r.steps[2] !== targetRecipe.steps[2] && r.steps[0] !== targetRecipe.steps[0]));
+      for (const cand of diffSaucePool) {
+        if (distractors.length >= 2) break;
+        const k = `${[cand.steps[0], cand.steps[1]].sort().join('+')}+${cand.steps[2]}`;
+        if (!usedKeys.has(k)) { usedKeys.add(k); distractors.push(cand); }
+      }
+      while (distractors.length < 2) {
+        distractors.push(generateDynamicRecipe(usedKeys));
+      }
+
+      state.quizOptions = shuffleArray([targetRecipe, ...distractors]);
       sound.playStepSuccess(659);
       speakText('剛剛做的是哪一碗冰？');
       updateHUD();
@@ -2266,15 +2388,15 @@
       const isWide = area.width >= 560;
       if (isWide) {
         const gap = 14;
-        const cardW = Math.min(230, (area.width - gap * (count + 1)) / count);
-        const cardH = Math.min(250, area.height * 0.56);
+        const cardW = Math.min(235, (area.width - gap * (count + 1)) / count);
+        const cardH = Math.min(255, area.height * 0.56);
         const startX = area.centerX - (cardW * count + gap * (count - 1)) * 0.5;
         const cardY = area.centerY - cardH * 0.35;
         return state.quizOptions.map((recipe, i) => ({ recipe, x: startX + i * (cardW + gap), y: cardY, w: cardW, h: cardH }));
       }
       const gap = 10;
-      const cardW = Math.min(340, area.width - 28);
-      const cardH = Math.min(92, (area.height * 0.64 - gap * (count - 1)) / count);
+      const cardW = Math.min(350, area.width - 24);
+      const cardH = Math.min(94, (area.height * 0.64 - gap * (count - 1)) / count);
       const startY = area.centerY - (cardH * count + gap * (count - 1)) * 0.32;
       const cardX = area.centerX - cardW * 0.5;
       return state.quizOptions.map((recipe, i) => ({ recipe, x: cardX, y: startY + i * (cardH + gap), w: cardW, h: cardH }));
@@ -2299,12 +2421,11 @@
     }
 
     /********************************************************************
-     * 8. 畫布視覺渲染引擎（含精緻古早味觸控背景板 & 點餐記憶卡）
+     * 8. 畫布視覺渲染引擎（放大食材文字 ＋ 100% 實際配料成品碗）
      ********************************************************************/
     const getZoneBowlRadius = (zone) => Math.max(44, Math.min(126, Math.min(zone.w, zone.h) * 0.38));
 
     function drawRetroTouchBackdrop(w, h) {
-      // 1. 溫潤米白復古冰果室牆面
       const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
       bgGrad.addColorStop(0, '#F7F1E3');
       bgGrad.addColorStop(0.55, '#EFE5D3');
@@ -2312,7 +2433,6 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, w, h);
 
-      // 2. 懷舊馬賽克磁磚腰壁紋理
       const tileStartY = h * 0.44;
       const tileEndY = h * 0.72;
       ctx.fillStyle = '#EAE0CE';
@@ -2322,20 +2442,12 @@
       ctx.lineWidth = 1;
       const tileSz = 28;
       for (let x = 0; x < w; x += tileSz) {
-        ctx.beginPath();
-        ctx.moveTo(x, tileStartY);
-        ctx.lineTo(x, tileEndY);
-        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x, tileStartY); ctx.lineTo(x, tileEndY); ctx.stroke();
       }
       for (let y = tileStartY; y <= tileEndY; y += tileSz) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
-        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
       }
 
-      // 3. 頂部紅白相間復古遮陽棚波浪邊（增添冰果室氛圍且不干擾操作區）
-      const awningH = 18;
       const stripeW = 36;
       const cols = Math.ceil(w / stripeW) + 1;
       for (let i = 0; i < cols; i++) {
@@ -2345,7 +2457,6 @@
         ctx.fill();
       }
 
-      // 4. 底部溫潤檜木吧台桌面與木紋線條
       const deskY = h * 0.72;
       const woodGrad = ctx.createLinearGradient(0, deskY, 0, h);
       woodGrad.addColorStop(0, '#A87C58');
@@ -2355,7 +2466,6 @@
       ctx.fillStyle = woodGrad;
       ctx.fillRect(0, deskY, w, h - deskY);
 
-      // 吧台桌緣高光與木紋
       ctx.fillStyle = 'rgba(255, 244, 224, 0.28)';
       ctx.fillRect(0, deskY, w, 4);
       ctx.strokeStyle = 'rgba(58, 36, 20, 0.22)';
@@ -2424,7 +2534,7 @@
       state.floatingTexts.forEach(ft => {
         ctx.save();
         ctx.globalAlpha = Math.max(0, ft.alpha);
-        ctx.font = `900 ${Math.round(22 * ft.scale)}px "Noto Sans TC", sans-serif`;
+        ctx.font = `900 ${Math.round(23 * ft.scale)}px "Noto Sans TC", sans-serif`;
         ctx.textAlign = 'center';
         ctx.lineWidth = 6;
         ctx.strokeStyle = 'rgba(42, 24, 12, 0.92)';
@@ -2441,9 +2551,9 @@
 
     function drawOrderMemorizeCard(area) {
       const recipe = getCurrentRecipe();
-      const steps = getRecipeSteps(recipe);
-      const cardW = Math.min(area.width - 20, 480);
-      const cardH = Math.min(area.height - 20, 320);
+      const steps = recipe.steps;
+      const cardW = Math.min(area.width - 20, 460);
+      const cardH = Math.min(area.height - 20, 310);
       const x = area.centerX - cardW * 0.5;
       const y = area.centerY - cardH * 0.5;
 
@@ -2459,9 +2569,8 @@
       ctx.fillStyle = '#A34E34';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(`客人點餐：${recipe.name}`, area.centerX, y + 32);
+      ctx.fillText(`客人點餐：${recipe.name}`, area.centerX, y + 32, cardW - 24);
 
-      // 倒數進度條
       const ratio = Math.max(0, Math.min(1, state.memorizeTimer / config.memorizeSeconds));
       const barW = cardW - 60;
       ctx.fillStyle = '#EADCCB';
@@ -2471,35 +2580,29 @@
       roundRect(ctx, x + 30, y + 54, barW * ratio, 8, 4);
       ctx.fill();
 
-      // 橫排顯示要記住的 3 或 5 樣食材
-      const count = steps.length;
-      const itemW = (cardW - 36) / count;
-      const iconSz = Math.min(54, itemW * 0.72);
+      const itemW = (cardW - 44) / 3;
+      const iconSz = Math.min(62, itemW * 0.72);
       const rowY = y + cardH * 0.54;
 
       steps.forEach((ingId, idx) => {
         const ing = INGREDIENTS[ingId];
-        const ix = x + 18 + itemW * (idx + 0.5);
+        const ix = x + 22 + itemW * (idx + 0.5);
 
         ctx.fillStyle = '#F3E7D4';
-        roundRect(ctx, ix - itemW * 0.44, rowY - 56, itemW * 0.88, 114, 14);
+        roundRect(ctx, ix - itemW * 0.44, rowY - 56, itemW * 0.88, 118, 14);
         ctx.fill();
 
-        ctx.font = '900 13px "Noto Sans TC", sans-serif';
-        ctx.fillStyle = '#8C6849';
-        ctx.fillText(`${idx + 1}`, ix, rowY - 40);
-
         const extImg = getExternalAsset(ing.imgFile);
-        if (extImg) ctx.drawImage(extImg, ix - iconSz * 0.5, rowY - 26, iconSz, iconSz);
+        if (extImg) ctx.drawImage(extImg, ix - iconSz * 0.5, rowY - 40, iconSz, iconSz);
 
-        ctx.font = `900 ${count === 5 ? 14 : 17}px "Noto Sans TC", sans-serif`;
+        ctx.font = '900 19px "Noto Sans TC", sans-serif';
         ctx.fillStyle = '#4A3222';
-        ctx.fillText(ing.name, ix, rowY + 42, itemW - 8);
+        ctx.fillText(ing.name, ix, rowY + 38, itemW - 8);
       });
 
       ctx.font = '800 14px "Noto Sans TC", sans-serif';
       ctx.fillStyle = '#7F7163';
-      ctx.fillText(`請記住順序（${Math.ceil(state.memorizeTimer)} 秒後開始製作）`, area.centerX, y + cardH - 22);
+      ctx.fillText(`請記住這 3 樣材料（${Math.ceil(state.memorizeTimer)} 秒後開始，順序不限）`, area.centerX, y + cardH - 22);
       ctx.restore();
     }
 
@@ -2564,7 +2667,8 @@
       roundRect(ctx, zone.x, zone.y, zone.w, zone.h, 24);
       ctx.fill();
 
-      if (isScoopPhase && isTargetBasin && state.dwellElapsed > 0 && config.dwellSeconds > 0) {
+      const isDwellingThis = isScoopPhase && state.dwellElapsed > 0 && config.dwellSeconds > 0 && (state.dwellBasinId === zone.id);
+      if (isDwellingThis) {
         const ratio = Math.min(1, state.dwellElapsed / config.dwellSeconds);
         ctx.save();
         roundRect(ctx, zone.x, zone.y, zone.w, zone.h, 24);
@@ -2586,20 +2690,21 @@
       ctx.setLineDash([]);
 
       const zx = zone.x + zone.w * 0.5;
-      const zy = zone.y + zone.h * 0.55;
-      drawLargeIngredientBasin(zx, zy, getZoneBowlRadius(zone), basinIng, highlightGuided);
+      const zy = zone.y + zone.h * 0.50;
+      drawLargeIngredientBasin(zx, zy, getZoneBowlRadius(zone) * 0.96, basinIng, highlightGuided);
 
-      const labelW = Math.min(zone.w - 12, 156);
-      const labelH = 28;
-      const labelY = zone.y + zone.h - 20;
-      ctx.fillStyle = 'rgba(255, 249, 237, 0.96)';
-      roundRect(ctx, zx - labelW / 2, labelY - labelH / 2, labelW, labelH, 10);
+      // 加大加粗的食材名稱標籤，方便長輩與視力較弱者遠距離辨識
+      const labelW = Math.min(zone.w - 10, 184);
+      const labelH = 38;
+      const labelY = zone.y + zone.h - 24;
+      ctx.fillStyle = 'rgba(255, 249, 237, 0.98)';
+      roundRect(ctx, zx - labelW / 2, labelY - labelH / 2, labelW, labelH, 12);
       ctx.fill();
-      ctx.strokeStyle = 'rgba(109, 72, 46, 0.42)';
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#8C623E';
+      ctx.lineWidth = 2;
       ctx.stroke();
-      ctx.font = `700 ${Math.min(15, Math.max(11, labelW * 0.1))}px "Noto Sans TC", sans-serif`;
-      ctx.fillStyle = '#523A2B';
+      ctx.font = `900 ${Math.min(22, Math.max(15, labelW * 0.135))}px "Noto Sans TC", sans-serif`;
+      ctx.fillStyle = '#3F2718';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(basinIng.name, zx, labelY, labelW - 12);
@@ -2737,34 +2842,26 @@
     }
 
     function drawRecipePreviewAt(recipe, cx, cy, r) {
-      const steps = getRecipeSteps(recipe);
-      if (steps.length === 3 && recipe.finishedImg) {
-        const finishedImg = getExternalAsset(recipe.finishedImg);
-        if (finishedImg) {
-          ctx.drawImage(finishedImg, cx - r, cy - r, r * 2, r * 2);
-          return;
-        }
-      }
-      // 動態將這碗冰的實際配料（3 樣或 5 樣）層層堆疊到陶瓷冰碗上
-      const mockLayers = steps.map((ingId, sIdx) => {
+      // 100% 依據該配方實際的 2 種固體配料（左／右分區）＋ 1 種淋醬 ＋ 脆笛酥小紙傘裝飾繪製成品冰碗
+      const mockLayers = recipe.steps.map((ingId, sIdx) => {
         const ing = INGREDIENTS[ingId];
-        const angleBase = (sIdx / Math.max(1, steps.length - 1)) * Math.PI * 0.8 - Math.PI * 0.4;
-        const pts = [
-          [Math.sin(angleBase) * 0.42, -0.35],
-          [Math.sin(angleBase) * 0.25 - 0.14, -0.50],
-          [Math.sin(angleBase) * 0.25 + 0.14, -0.46],
-          [Math.sin(angleBase) * 0.35, -0.24],
-          [0, -0.42]
-        ];
+        const sideOffset = (ing.role === 'topping') ? (sIdx === 0 ? -0.38 : 0.38) : 0;
+        const pts = [[-0.22, -0.35], [0.18, -0.46], [-0.14, -0.22], [0.22, -0.24], [0, -0.40]];
         return {
           ing,
           animProgress: 1,
-          items: pts.map(([rx, ry], idx) => ({ rx, ry, size: 0.135, rot: idx * 0.5, variant: idx % 2 }))
+          items: pts.map(([lx, ry], idx) => ({
+            rx: sideOffset * 1.4 + lx,
+            ry,
+            size: 0.145,
+            rot: idx * 0.5,
+            variant: idx % 2
+          }))
         };
       });
       drawIceBowlAt(cx, cy, r, false, mockLayers);
       const garnishImg = getExternalAsset('bowl-garnish.png');
-      if (garnishImg) ctx.drawImage(garnishImg, cx - r, cy - r * 1.25, r * 2, r * 1.3);
+      if (garnishImg) ctx.drawImage(garnishImg, cx - r * 0.92, cy - r * 1.18, r * 1.84, r * 1.18);
     }
 
     function drawMemoryQuizShowcase(area) {
@@ -2772,7 +2869,7 @@
       const topY = area.top + 36;
 
       ctx.save();
-      const bannerW = Math.min(area.width - 20, 420);
+      const bannerW = Math.min(area.width - 20, 440);
       const bannerH = 44;
       ctx.fillStyle = 'rgba(255, 249, 237, 0.96)';
       roundRect(ctx, cx - bannerW / 2, topY - bannerH / 2, bannerW, bannerH, 22);
@@ -2781,17 +2878,20 @@
       ctx.strokeStyle = '#A34E34';
       ctx.stroke();
 
-      ctx.font = `900 ${Math.round(Math.max(16, Math.min(21, area.width * 0.045)))}px "Noto Sans TC", sans-serif`;
+      ctx.font = `900 ${Math.round(Math.max(15, Math.min(20, area.width * 0.042)))}px "Noto Sans TC", sans-serif`;
       ctx.fillStyle = '#4A3222';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('剛剛做的是哪一碗冰？', cx, topY);
+      const headerTxt = state.quizCooldownTimer > 0
+        ? `先想一想…（${state.quizCooldownTimer.toFixed(1)} 秒後可選）`
+        : '剛剛做的是哪一碗冰？';
+      ctx.fillText(headerTxt, cx, topY);
 
       const cards = getQuizCardRects(area);
-      const holdNeed = Math.max(0.45, config.dwellSeconds);
+      const holdNeed = Math.max(1.2, config.dwellSeconds);
 
       cards.forEach(card => {
-        const isHovered = (state.quizDwellId === card.recipe.id);
+        const isHovered = (state.quizDwellId === card.recipe.id) && state.quizCooldownTimer <= 0;
         const ratio = isHovered ? Math.min(1, state.quizDwellElapsed / holdNeed) : 0;
 
         ctx.save();
@@ -2815,20 +2915,20 @@
 
         if (card.w > card.h * 1.4) {
           const imgSz = Math.min(card.h - 14, 74);
-          drawRecipePreviewAt(card.recipe, card.x + 14 + imgSz * 0.5, card.y + card.h * 0.5, imgSz * 0.5);
-          ctx.font = `900 ${Math.min(19, Math.max(14, card.w * 0.056))}px "Noto Sans TC", sans-serif`;
+          drawRecipePreviewAt(card.recipe, card.x + 14 + imgSz * 0.5, card.y + card.h * 0.54, imgSz * 0.48);
+          ctx.font = `900 ${Math.min(18, Math.max(14, card.w * 0.052))}px "Noto Sans TC", sans-serif`;
           ctx.fillStyle = '#4A3222';
           ctx.textAlign = 'left';
           ctx.textBaseline = 'middle';
-          ctx.fillText(card.recipe.name, card.x + imgSz + 26, card.y + card.h * 0.5, card.w - imgSz - 34);
+          ctx.fillText(card.recipe.name, card.x + imgSz + 24, card.y + card.h * 0.5, card.w - imgSz - 32);
         } else {
-          const imgSz = Math.min(card.w * 0.68, card.h * 0.62);
-          drawRecipePreviewAt(card.recipe, card.x + card.w * 0.5, card.y + 12 + imgSz * 0.5, imgSz * 0.5);
-          ctx.font = `900 ${Math.min(18, Math.max(13, card.w * 0.088))}px "Noto Sans TC", sans-serif`;
+          const imgSz = Math.min(card.w * 0.66, card.h * 0.58);
+          drawRecipePreviewAt(card.recipe, card.x + card.w * 0.5, card.y + 18 + imgSz * 0.5, imgSz * 0.48);
+          ctx.font = `900 ${Math.min(17, Math.max(13, card.w * 0.082))}px "Noto Sans TC", sans-serif`;
           ctx.fillStyle = '#4A3222';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText(card.recipe.name, card.x + card.w * 0.5, card.y + card.h - 24, card.w - 16);
+          ctx.fillText(card.recipe.name, card.x + card.w * 0.5, card.y + card.h - 24, card.w - 14);
         }
         ctx.restore();
       });
@@ -2838,9 +2938,9 @@
     function drawCelebrationShowcase(area) {
       const recipe = getCurrentRecipe();
       const cx = area.centerX;
-      const cy = area.centerY + Math.min(18, area.height * 0.03);
+      const cy = area.centerY + Math.min(22, area.height * 0.04);
       const minDim = Math.min(area.width, area.height);
-      const heroR = Math.max(78, Math.min(155, minDim * 0.32));
+      const heroR = Math.max(78, Math.min(150, minDim * 0.30));
 
       const elapsed = state.celebrateTotal - state.celebrateTimer;
       const popBounce = elapsed < 0.35
@@ -2868,12 +2968,12 @@
       drawRecipePreviewAt(recipe, 0, 0, heroR);
       ctx.restore();
 
-      const titleY = Math.max(area.top + 28, cy - heroR * 1.18);
+      const titleY = Math.max(area.top + 28, cy - heroR * 1.24);
       const subY = Math.min(area.top + area.height - 22, cy + heroR * 1.12);
 
       ctx.save();
       const titleText = `${recipe.name}完成！`;
-      ctx.font = `900 ${Math.round(Math.max(20, Math.min(32, minDim * 0.068)))}px "Noto Sans TC", sans-serif`;
+      ctx.font = `900 ${Math.round(Math.max(18, Math.min(29, minDim * 0.06)))}px "Noto Sans TC", sans-serif`;
       const pillW = Math.min(area.width - 20, ctx.measureText(titleText).width + 44);
       const pillH = Math.max(42, Math.min(54, minDim * 0.11));
 
@@ -2887,7 +2987,7 @@
       ctx.fillStyle = '#4A3222';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(titleText, cx, titleY);
+      ctx.fillText(titleText, cx, titleY, pillW - 20);
 
       ctx.fillStyle = '#A34E34';
       roundRect(ctx, cx - 84, subY - 18, 168, 36, 18);
@@ -2948,9 +3048,10 @@
     function drawSpoonCursor(w, h) {
       const px = state.cursorX * w;
       const py = state.cursorY * h;
-      const ing = getCurrentIngredient();
+      const ing = getActiveIngredient();
       const hasFood = Boolean(state.carryingIngredient);
       const isMemHidden = (config.gameMode === 'MEMORY_ORDER') && !hasFood && state.peekTimer <= 0 && state.phase === 'GO_SCOOP';
+      const isDormant = !hasFreshTracking();
 
       if (state.spoonTrail.length > 1) {
         const trailColor = hasFood ? ing.badgeColor : 'rgba(123, 89, 66, 0.45)';
@@ -2972,6 +3073,7 @@
 
       ctx.save();
       ctx.translate(px, py);
+      if (isDormant) ctx.globalAlpha = 0.42;
 
       ctx.beginPath();
       ctx.arc(0, 0, hasFood ? 48 : 40, 0, Math.PI * 2);
@@ -3011,15 +3113,17 @@
 
       if (state.phase !== 'BOWL_CELEBRATE') {
         const isQuiz = (state.phase === 'BOWL_QUIZ');
-        const label = isQuiz ? '停留在正確冰品上' : (hasFood ? '放回冰碗' : (isMemHidden ? `第 ${state.currentStepIndex + 1} 樣` : ing.name));
+        const label = isDormant
+          ? '等待感測訊號…'
+          : (isQuiz ? (state.quizCooldownTimer > 0 ? '先想一想…' : '停留在正確冰品上') : (hasFood ? '放回冰碗' : (isMemHidden ? '憑記憶選料' : ing.name)));
         ctx.fillStyle = isQuiz ? '#744B32' : (hasFood ? '#784127' : '#A95E35');
-        roundRect(ctx, -78, -71, 156, 30, 15);
+        roundRect(ctx, -82, -72, 164, 32, 16);
         ctx.fill();
         ctx.lineWidth = 2;
         ctx.strokeStyle = '#FFF9ED';
         ctx.stroke();
 
-        ctx.font = '900 13.5px "Noto Sans TC", sans-serif';
+        ctx.font = '900 14px "Noto Sans TC", sans-serif';
         ctx.fillStyle = '#FFF9ED';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -3057,9 +3161,10 @@
         }
       }
 
-      if (!state.cameraActive || config.trackMode === 'TOUCH' || (performance.now() - state.lastHandSeenTime > 500)) {
+      if (!state.cameraActive || config.trackMode === 'TOUCH') {
         state.targetCursorX = e.clientX / window.innerWidth;
         state.targetCursorY = e.clientY / window.innerHeight;
+        state.lastTrackValidTime = performance.now();
       }
     }
     window.addEventListener('pointermove', handlePointerInput);
@@ -3086,6 +3191,7 @@
       document.querySelectorAll('#grp-game-mode .mode-card').forEach(card => {
         card.classList.toggle('active', card.dataset.mode === config.gameMode);
       });
+      document.getElementById('sub-memorize-row').style.display = config.gameMode === 'MEMORY_ORDER' ? 'flex' : 'none';
       syncSpaceLevelUI();
     }
 
@@ -3113,6 +3219,7 @@
       });
       document.getElementById('sub-hand-pref').style.display = config.trackMode === 'HAND' ? 'flex' : 'none';
       document.getElementById('sub-color-tools').style.display = config.trackMode === 'COLOR' ? 'flex' : 'none';
+      document.getElementById('sub-mirror-row').style.display = config.trackMode === 'TOUCH' ? 'none' : 'flex';
       document.getElementById('repick-color-btn').classList.toggle('visible', state.cameraActive && config.trackMode === 'COLOR');
     }
 
@@ -3162,7 +3269,8 @@
       document.getElementById('peek-order-btn').addEventListener('click', () => {
         state.peekTimer = 3.0;
         updateHUD();
-        speakText(getCurrentIngredient().name);
+        const remNames = getRemainingIngIds().map(id => INGREDIENTS[id].name).join('、');
+        speakText(remNames);
       });
 
       document.getElementById('repick-color-btn').addEventListener('click', () => {
@@ -3212,7 +3320,6 @@
         initSession();
       });
 
-      // 遊戲模式卡片選擇
       document.querySelectorAll('#grp-game-mode .mode-card').forEach(card => {
         card.addEventListener('click', () => {
           config.gameMode = card.dataset.mode;
@@ -3220,16 +3327,15 @@
         });
       });
 
-      bindOptionGroup('grp-space-level', (val) => { config.spaceLevel = parseInt(val, 10); syncSpaceLevelUI(); });
-      bindOptionGroup('grp-l1-dir', (val) => { config.level1Dir = val; });
-      bindOptionGroup('grp-seq-mode', (val) => { config.seqMode = val; });
       bindOptionGroup('grp-track-mode', (val) => {
         config.trackMode = val;
         if (val === 'COLOR' && !state.colorTarget) state.awaitingColorPick = true;
         syncTrackModeButtons();
       });
       bindOptionGroup('grp-hand-pref', (val) => { config.handPref = val; });
-      bindOptionGroup('grp-step-count', (val) => { config.stepCount = parseInt(val, 10); });
+      bindOptionGroup('grp-space-level', (val) => { config.spaceLevel = parseInt(val, 10); syncSpaceLevelUI(); });
+      bindOptionGroup('grp-l1-dir', (val) => { config.level1Dir = val; });
+      bindOptionGroup('grp-seq-mode', (val) => { config.seqMode = val; });
       bindOptionGroup('grp-memorize-sec', (val) => { config.memorizeSeconds = parseFloat(val); });
       bindOptionGroup('grp-dwell-time', (val) => { config.dwellSeconds = parseFloat(val); });
       bindOptionGroup('grp-require-return', (val) => { config.requireReturn = (val === 'true'); });
@@ -3256,7 +3362,7 @@
       btnMirror.addEventListener('click', () => {
         config.mirrorCam = !config.mirrorCam;
         btnMirror.classList.toggle('active', config.mirrorCam);
-        btnMirror.textContent = config.mirrorCam ? '🪞 鏡像開' : '🪞 鏡像關';
+        btnMirror.textContent = config.mirrorCam ? '🪞 鏡像開（照鏡子方向）' : '🪞 鏡像關';
         video.classList.toggle('unmirrored', !config.mirrorCam);
       });
 
