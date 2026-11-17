@@ -151,13 +151,86 @@ class SoundEngine {
   constructor() {
     this.ctx = null;
     this.enabled = true;
+    this.bgmEnabled = true;
+    this.bgmVolume = 0.45;
+    this.bgmGain = null;
+    this.bgmTimer = null;
+    this.bgmStep = 0;
   }
   init() {
     if (!this.ctx) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) this.ctx = new AudioCtx();
+      if (AudioCtx) {
+        this.ctx = new AudioCtx();
+        this.bgmGain = this.ctx.createGain();
+        this.bgmGain.gain.setValueAtTime(this.bgmEnabled ? this.bgmVolume * 0.24 : 0, this.ctx.currentTime);
+        this.bgmGain.connect(this.ctx.destination);
+      }
     }
     if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+    if (this.bgmEnabled && !this.bgmTimer) this.startBGM();
+  }
+  setBgmEnabled(on) {
+    this.bgmEnabled = on;
+    if (this.bgmGain && this.ctx) {
+      this.bgmGain.gain.setTargetAtTime(on ? this.bgmVolume * 0.24 : 0, this.ctx.currentTime, 0.05);
+    }
+    if (on) {
+      this.init();
+      this.startBGM();
+    } else {
+      this.stopBGM();
+    }
+  }
+  setBgmVolume(val01) {
+    this.bgmVolume = Math.max(0, Math.min(1, val01));
+    if (this.bgmGain && this.ctx) {
+      this.bgmGain.gain.setTargetAtTime(this.bgmEnabled ? this.bgmVolume * 0.24 : 0, this.ctx.currentTime, 0.04);
+    }
+  }
+  _playPluckNote(freq, dur = 0.26, isBass = false) {
+    if (!this.ctx || !this.bgmGain || !this.bgmEnabled || this.bgmVolume <= 0) return;
+    const t0 = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const env = this.ctx.createGain();
+    osc.type = isBass ? 'sine' : 'triangle';
+    osc.frequency.setValueAtTime(freq, t0);
+    env.gain.setValueAtTime(0.001, t0);
+    env.gain.linearRampToValueAtTime(isBass ? 0.42 : 0.34, t0 + 0.015);
+    env.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+    osc.connect(env);
+    env.connect(this.bgmGain);
+    osc.start(t0);
+    osc.stop(t0 + dur + 0.02);
+  }
+  startBGM() {
+    if (this.bgmTimer || !this.bgmEnabled) return;
+    // 原創無版權台灣五聲音階「古早味冰果室」輕快小調循環 (C5=523.25, D5=587.33, E5=659.25, G5=783.99, A5=880)
+    const melody = [
+      523.25, 659.25, 783.99, 659.25, 880.00, 783.99, 659.25, 587.33,
+      523.25, 587.33, 659.25, 783.99, 659.25, 0,      587.33, 0,
+      783.99, 880.00, 1046.5, 880.00, 783.99, 659.25, 587.33, 659.25,
+      523.25, 659.25, 587.33, 440.00, 523.25, 0,      523.25, 0
+    ];
+    const bass = [
+      261.63, 0, 392.00, 0, 220.00, 0, 329.63, 0,
+      174.61, 0, 261.63, 0, 196.00, 0, 293.66, 0,
+      261.63, 0, 392.00, 0, 220.00, 0, 329.63, 0,
+      174.61, 0, 196.00, 0, 261.63, 0, 261.63, 0
+    ];
+    this.bgmTimer = setInterval(() => {
+      if (!this.bgmEnabled || !this.ctx || this.ctx.state !== 'running') return;
+      const idx = this.bgmStep % melody.length;
+      if (melody[idx] > 0) this._playPluckNote(melody[idx], 0.28, false);
+      if (bass[idx] > 0) this._playPluckNote(bass[idx], 0.34, true);
+      this.bgmStep++;
+    }, 310);
+  }
+  stopBGM() {
+    if (this.bgmTimer) {
+      clearInterval(this.bgmTimer);
+      this.bgmTimer = null;
+    }
   }
   tone(freq, type, dur, vol, delay = 0, slideTo = null) {
     if (!this.enabled) return;
@@ -360,7 +433,6 @@ async function startCameraMode(mode) {
     state.paused = false;
     state.lastTrackValidTime = 0;
 
-    document.getElementById('cam-pill-label').textContent = '📷 關閉前鏡頭';
     document.getElementById('repick-color-btn').classList.toggle('visible', mode === 'COLOR');
     if (mode === 'COLOR') {
       setTrackingStatusUI(tracker.hasColorTarget() ? 'cam-on' : 'cam-warn', tracker.hasColorTarget() ? '🎨 顏色追蹤中' : '👆 請點擊畫面上的彩色物品取色');
@@ -372,7 +444,6 @@ async function startCameraMode(mode) {
     state.cameraActive = false;
     config.trackMode = 'TOUCH';
     syncTrackModeButtons();
-    document.getElementById('cam-pill-label').textContent = '📷 啟動前鏡頭';
     setTrackingStatusUI('', `⚠️ 無法開啟鏡頭（${err?.message || '權限不足'}）`);
     updateHUD();
   }
@@ -384,7 +455,6 @@ function stopCameraMode() {
   state.awaitingColorPick = false;
   config.trackMode = 'TOUCH';
   syncTrackModeButtons();
-  document.getElementById('cam-pill-label').textContent = '📷 啟動前鏡頭';
   document.getElementById('repick-color-btn').classList.remove('visible');
   setTrackingStatusUI('', '👆 觸控／滑鼠模式');
   updateHUD();
@@ -1804,9 +1874,13 @@ function bindOptionGroup(groupId, onSelect) {
   });
 }
 
-function syncGameModeUI() {
+function syncGameModeUI(scrollIntoView = false) {
   document.querySelectorAll('#grp-game-mode .mode-card').forEach(card => {
-    card.classList.toggle('active', card.dataset.mode === config.gameMode);
+    const isAct = card.dataset.mode === config.gameMode;
+    card.classList.toggle('active', isAct);
+    if (isAct && scrollIntoView) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
   });
   document.getElementById('sub-memorize-row').style.display = config.gameMode === 'MEMORY_ORDER' ? 'flex' : 'none';
   syncSpaceLevelUI();
@@ -1896,8 +1970,6 @@ function initUIEvents() {
     settingsModal.classList.add('open');
   });
 
-  document.getElementById('cam-control-pill').addEventListener('click', toggleCamera);
-
   document.getElementById('peek-order-btn').addEventListener('click', () => {
     state.peekTimer = 3.0;
     updateHUD();
@@ -1953,7 +2025,7 @@ function initUIEvents() {
   document.querySelectorAll('#grp-game-mode .mode-card').forEach(card => {
     card.addEventListener('click', () => {
       config.gameMode = card.dataset.mode;
-      syncGameModeUI();
+      syncGameModeUI(true);
     });
   });
 
@@ -1970,6 +2042,24 @@ function initUIEvents() {
   bindOptionGroup('grp-require-return', (val) => { config.requireReturn = (val === 'true'); });
   bindOptionGroup('grp-zone-size', (val) => { config.zoneSizeScale = parseFloat(val); });
   bindOptionGroup('grp-target-bowls', (val) => { config.targetBowls = parseInt(val, 10); initSession(); });
+
+  const btnBgm = document.getElementById('btn-toggle-bgm');
+  const bgmSlider = document.getElementById('bgm-volume-slider');
+  const bgmVal = document.getElementById('bgm-volume-val');
+  if (btnBgm) {
+    btnBgm.addEventListener('click', () => {
+      sound.setBgmEnabled(!sound.bgmEnabled);
+      btnBgm.classList.toggle('active', sound.bgmEnabled);
+      btnBgm.textContent = sound.bgmEnabled ? '🎵 古早味配樂開' : '🔇 古早味配樂關';
+    });
+  }
+  if (bgmSlider && bgmVal) {
+    bgmSlider.addEventListener('input', () => {
+      const pct = parseInt(bgmSlider.value, 10);
+      bgmVal.textContent = `${pct}%`;
+      sound.setBgmVolume(pct / 100);
+    });
+  }
 
   const btnSound = document.getElementById('btn-toggle-sound');
   btnSound.addEventListener('click', () => {

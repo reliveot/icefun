@@ -32,27 +32,24 @@
     </div>
   </div>
 
-  <!-- 獨立美化的追蹤狀態提示浮標（不擠壓訂單與底部按鈕） -->
+  <!-- 獨立美化的追蹤狀態提示浮標 -->
   <div id="tracking-status-chip" class="tracking-chip" role="status" aria-live="polite">
     <span id="status-dot" class="status-dot"></span>
     <span id="tracking-text">觸控／滑鼠模式</span>
   </div>
 
-  <!-- 左下角鏡頭快捷控制與取色／偷看訂單按鈕 -->
+  <!-- 左下角小按鈕（僅在顏色模式重新取色，或點餐記憶模式偷看訂單時浮現） -->
   <div id="bottom-bar">
-    <button id="cam-control-pill" type="button">
-      <span id="cam-pill-label">📷 啟動前鏡頭</span>
-    </button>
     <button id="repick-color-btn" class="mini-action-pill" type="button">
       <span id="color-swatch"></span>
-      <span>🎨 重新選色</span>
+      <span>🎨 重選色</span>
     </button>
     <button id="peek-order-btn" class="mini-action-pill" type="button">
       <span>👀 偷看訂單</span>
     </button>
   </div>
 
-  <!-- 右下角固定診斷工具（預設收合，點擊展開/收合） -->
+  <!-- 右下角固定診斷工具（預設收合，展開為半透明玻璃卡片） -->
   <div id="diag-widget" class="diag-widget">
     <div id="diag-card" class="diag-card" hidden>
       <div class="diag-card-header">
@@ -79,7 +76,7 @@
   <!-- 開場迎賓啟動畫面 -->
   <div id="welcome-modal" class="modal-overlay open">
     <div class="welcome-card">
-      <span class="welcome-badge">吱吱復健 · Relive OT｜v11</span>
+      <span class="welcome-badge">吱吱復健 · Relive OT｜v12</span>
       <div class="welcome-title">🥣 懷舊冰果室｜手搖剉冰樂</div>
       <div class="welcome-sub">上肢空間定位・物品顏色感測・記憶認知訓練</div>
       <div class="welcome-desc">
@@ -96,107 +93,109 @@
     </div>
   </div>
 
-  <!-- 治療師設定面板（五大獨立區塊） -->
+  <!-- 精簡緊湊版治療師設定面板 -->
   <div id="settings-modal" class="modal-overlay">
     <div class="settings-card">
       <div class="settings-header">
-        <h2>🥣 懷舊冰果室｜遊戲模式與復健設定</h2>
-        <button id="btn-close-settings" class="secondary-btn">✕ 返回遊戲</button>
+        <h2>🥣 懷舊冰果室｜模式與設定</h2>
+        <button id="btn-close-settings" class="secondary-btn">✕ 返回</button>
       </div>
 
       <div class="settings-body">
-        <!-- 一、遊戲模式 -->
+        <!-- 1. 遊戲模式（左右滑動小卡片＋專屬插畫） -->
         <section class="setting-section">
           <div class="setting-section-title">
-            <span>1. 選擇遊戲模式（共 4 種玩法）</span>
-            <span style="font-size:0.78rem; color:#7F7163; font-weight:700;">點選模式卡片切換</span>
+            <span>1. 遊戲模式（左右滑動選擇）</span>
+            <span class="section-hint">← 左右滑動 →</span>
           </div>
 
-          <div class="mode-cards-grid" id="grp-game-mode">
+          <div class="mode-carousel" id="grp-game-mode">
             <div class="mode-card active" data-mode="ACTION">
-              <div class="mode-card-header">
-                <span class="mode-card-title">🟢 純動作引導</span>
-                <span class="mode-card-badge">第 1～4 級</span>
+              <img class="mode-card-img" src="./images/mode-action.png" alt="純動作引導">
+              <div class="mode-card-body">
+                <div class="mode-card-header">
+                  <span class="mode-card-title">🟢 純動作引導</span>
+                  <span class="mode-card-badge">第 1～4 級</span>
+                </div>
+                <div class="mode-card-desc">單一目標盆＋動態箭頭引導，專注上肢伸展與往返控制。</div>
               </div>
-              <div class="mode-card-desc">場上只放 1 碗冰＋1 盆目標配料，搭配動態方向箭頭引導，專注上肢伸展與往返控制。</div>
             </div>
 
             <div class="mode-card" data-mode="FIND">
-              <div class="mode-card-header">
-                <span class="mode-card-title">🟡 看單找料（視覺搜尋）</span>
-                <span class="mode-card-badge">第 2 級起</span>
+              <img class="mode-card-img" src="./images/mode-find.png" alt="看單找料">
+              <div class="mode-card-body">
+                <div class="mode-card-header">
+                  <span class="mode-card-title">🟡 看單找料</span>
+                  <span class="mode-card-badge">第 2 級起</span>
+                </div>
+                <div class="mode-card-desc">隱藏箭頭、外圍擺滿多盆配料，看訂單找出正確食材。</div>
               </div>
-              <div class="mode-card-desc">隱藏方向箭頭，外圍擺滿 2～4 盆不同配料，看上方訂單與語音提示找出正確食材。</div>
             </div>
 
             <div class="mode-card" data-mode="MEMORY_ORDER">
-              <div class="mode-card-header">
-                <span class="mode-card-title">🔵 點餐記憶（不限順序）</span>
-                <span class="mode-card-badge">第 2 級起</span>
+              <img class="mode-card-img" src="./images/mode-memory-order.png" alt="點餐記憶">
+              <div class="mode-card-body">
+                <div class="mode-card-header">
+                  <span class="mode-card-title">🔵 點餐記憶</span>
+                  <span class="mode-card-badge">第 2 級起</span>
+                </div>
+                <div class="mode-card-desc">先記住 3 樣材料後隱藏菜單，憑記憶湊齊（不限順序）。</div>
               </div>
-              <div class="mode-card-desc">開始前客人先報出整碗要的 3 樣材料，接著隱藏訂單，憑記憶湊齊這 3 樣材料即可（先拿哪樣都行）！</div>
             </div>
 
             <div class="mode-card" data-mode="MEMORY_QUIZ">
-              <div class="mode-card-header">
-                <span class="mode-card-title">🟣 做完猜口味（回想推理）</span>
-                <span class="mode-card-badge">第 2 級起</span>
+              <img class="mode-card-img" src="./images/mode-memory-quiz.png" alt="做完猜口味">
+              <div class="mode-card-body">
+                <div class="mode-card-header">
+                  <span class="mode-card-title">🟣 做完猜口味</span>
+                  <span class="mode-card-badge">第 2 級起</span>
+                </div>
+                <div class="mode-card-desc">製作時隱藏冰名，完成 3 樣後回想剛剛做的是哪一碗。</div>
               </div>
-              <div class="mode-card-desc">製作時隱藏冰品名稱，加完 3 樣材料後跳出 3 碗剉冰（含 1.5 秒思考保護），回想剛剛加了什麼選出正確口味！</div>
             </div>
           </div>
         </section>
 
-        <!-- 二、控制方式（簡化為純三大控制來源，自動辨識任一手、固定鏡像） -->
+        <!-- 2. 控制與空間分級 -->
         <section class="setting-section">
           <div class="setting-section-title">
-            <span>2. 控制方式（自動辨識任一隻手・固定鏡像）</span>
+            <span>2. 控制方式與空間分級</span>
           </div>
 
           <div class="detail-row">
-            <div class="detail-label">選擇操作來源：</div>
+            <div class="detail-label">操作來源（自動辨識任一手・固定鏡像）：</div>
             <div class="btn-grid" id="grp-track-mode">
               <button class="opt-btn active" data-val="HAND">✋ 手部體感</button>
               <button class="opt-btn" data-val="COLOR">🎨 物品顏色感測</button>
-              <button class="opt-btn" data-val="TOUCH">👆 觸控／滑鼠（懷舊吧台）</button>
+              <button class="opt-btn" data-val="TOUCH">👆 觸控／滑鼠</button>
             </div>
           </div>
 
           <div class="detail-row" id="sub-color-tools" style="display:none;">
-            <div class="detail-label">物品顏色感測操作：</div>
             <div class="btn-grid">
-              <button id="btn-repick-in-panel" class="opt-btn">🎯 點擊畫面中的彩色物品／握把取色</button>
+              <button id="btn-repick-in-panel" class="opt-btn">🎯 點擊畫面中的彩色物品取色</button>
             </div>
-          </div>
-        </section>
-
-        <!-- 三、空間分級與方向 -->
-        <section class="setting-section">
-          <div class="setting-section-title">
-            <span>3. 空間大區塊分級與方向</span>
           </div>
 
           <div class="detail-row">
-            <div class="detail-label">空間層級（找料／記憶模式自動從第 2 級起跳）：</div>
+            <div class="detail-label">空間層級（找料／記憶模式自動第 2 級起）：</div>
             <div class="btn-grid" id="grp-space-level">
-              <button class="opt-btn active" data-val="1">第 1 級：對半兩大區</button>
-              <button class="opt-btn" data-val="2">第 2 級：中央碗＋左右</button>
-              <button class="opt-btn" data-val="3">第 3 級：中央碗＋左右上</button>
-              <button class="opt-btn" data-val="4">第 4 級：中央碗＋上下左右</button>
+              <button class="opt-btn active" data-val="1">1級：對半兩區</button>
+              <button class="opt-btn" data-val="2">2級：中碗＋左右</button>
+              <button class="opt-btn" data-val="3">3級：中碗＋左右上</button>
+              <button class="opt-btn" data-val="4">4級：中碗＋四方</button>
             </div>
           </div>
 
           <div class="detail-row" id="sub-level1-dir">
-            <div class="detail-label">第 1 級單一訓練方向：</div>
             <div class="btn-grid" id="grp-l1-dir">
-              <button class="opt-btn active" data-val="L2R">左(冰碗) ↔ 右(配料)</button>
-              <button class="opt-btn" data-val="R2L">右(冰碗) ↔ 左(配料)</button>
-              <button class="opt-btn" data-val="B2T">下(冰碗) ↔ 上(配料)</button>
+              <button class="opt-btn active" data-val="L2R">左(碗) ↔ 右(料)</button>
+              <button class="opt-btn" data-val="R2L">右(碗) ↔ 左(料)</button>
+              <button class="opt-btn" data-val="B2T">下(碗) ↔ 上(料)</button>
             </div>
           </div>
 
           <div class="detail-row" id="sub-multi-seq" style="display:none;">
-            <div class="detail-label">純動作引導時，配料盆出現順序：</div>
             <div class="btn-grid" id="grp-seq-mode">
               <button class="opt-btn active" data-val="ALT">依序交替</button>
               <button class="opt-btn" data-val="FIXED_L">固定左區</button>
@@ -206,79 +205,88 @@
           </div>
         </section>
 
-        <!-- 四、訓練細節調整 -->
+        <!-- 3. 動作細節、古早味配樂與聲音 -->
         <section class="setting-section">
           <div class="setting-section-title">
-            <span>4. 訓練細節調整（停留秒數、往返、碗數與聲音）</span>
+            <span>3. 動作細節與古早味配樂</span>
           </div>
 
           <div class="detail-row">
-            <div class="detail-label">挖料停留秒數（手進入配料區維持多久算挖起）：</div>
+            <div class="detail-label">挖料停留秒數：</div>
             <div class="btn-grid" id="grp-dwell-time">
-              <button class="opt-btn" data-val="0">0 秒（跨入即挖）</button>
-              <button class="opt-btn active" data-val="0.6">0.6 秒（輕度停留）</button>
-              <button class="opt-btn" data-val="1.2">1.2 秒（標準穩定）</button>
-              <button class="opt-btn" data-val="2.0">2.0 秒（耐力維持）</button>
+              <button class="opt-btn" data-val="0">0秒</button>
+              <button class="opt-btn active" data-val="0.6">0.6秒</button>
+              <button class="opt-btn" data-val="1.2">1.2秒</button>
+              <button class="opt-btn" data-val="2.0">2.0秒</button>
             </div>
           </div>
 
           <div class="detail-row">
-            <div class="detail-label">往返動作要求與區塊寬鬆度：</div>
+            <div class="detail-label">往返與區塊大小：</div>
             <div class="btn-grid" id="grp-require-return">
-              <button class="opt-btn active" data-val="true">標準往返（挖料 → 放回冰碗）</button>
-              <button class="opt-btn" data-val="false">單向省力（挖到自動飛入碗）</button>
+              <button class="opt-btn active" data-val="true">標準往返</button>
+              <button class="opt-btn" data-val="false">單向省力</button>
             </div>
             <div class="btn-grid" id="grp-zone-size" style="margin-top:4px;">
-              <button class="opt-btn active" data-val="1.15">超寬鬆大區塊</button>
-              <button class="opt-btn" data-val="1.0">標準大區塊</button>
+              <button class="opt-btn active" data-val="1.15">超寬鬆大區</button>
+              <button class="opt-btn" data-val="1.0">標準大區</button>
               <button class="opt-btn" data-val="0.82">內縮區塊</button>
             </div>
           </div>
 
           <div class="detail-row" id="sub-memorize-row" style="display:none;">
-            <div class="detail-label">點餐記憶模式：開局看菜單秒數：</div>
+            <div class="detail-label">點餐記憶看菜單秒數：</div>
             <div class="btn-grid" id="grp-memorize-sec">
-              <button class="opt-btn" data-val="4">4 秒（快記）</button>
-              <button class="opt-btn active" data-val="6">6 秒（標準）</button>
-              <button class="opt-btn" data-val="9">9 秒（充裕）</button>
+              <button class="opt-btn" data-val="4">4 秒</button>
+              <button class="opt-btn active" data-val="6">6 秒</button>
+              <button class="opt-btn" data-val="9">9 秒</button>
             </div>
           </div>
 
           <div class="detail-row">
-            <div class="detail-label">完成碗數（每碗 3 樣＝3 次往返動作）與聲音設定：</div>
+            <div class="detail-label">目標碗數：</div>
             <div class="btn-grid" id="grp-target-bowls">
-              <button class="opt-btn" data-val="3">3 碗（9 下）</button>
-              <button class="opt-btn active" data-val="5">5 碗（15 下）</button>
-              <button class="opt-btn" data-val="7">7 碗（21 下）</button>
-              <button class="opt-btn" data-val="10">10 碗（30 下）</button>
+              <button class="opt-btn" data-val="3">3 碗</button>
+              <button class="opt-btn active" data-val="5">5 碗</button>
+              <button class="opt-btn" data-val="7">7 碗</button>
+              <button class="opt-btn" data-val="10">10 碗</button>
             </div>
-            <div class="btn-grid" style="margin-top:4px;">
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-label">音效、語音與古早味背景音樂：</div>
+            <div class="btn-grid">
+              <button id="btn-toggle-bgm" class="opt-btn active">🎵 古早味配樂開</button>
               <button id="btn-toggle-sound" class="opt-btn active">🔊 音效開</button>
-              <button id="btn-toggle-tts" class="opt-btn active">🗣️ 語音報料開</button>
+              <button id="btn-toggle-tts" class="opt-btn active">🗣️ 語音開</button>
+            </div>
+            <div class="bgm-slider-row">
+              <span class="bgm-slider-label">音樂音量</span>
+              <input id="bgm-volume-slider" type="range" min="0" max="100" value="45" aria-label="背景音樂音量">
+              <span id="bgm-volume-val" class="bgm-slider-val">45%</span>
             </div>
           </div>
         </section>
 
-        <!-- 五、延伸復健資源與課程工具 -->
+        <!-- 4. 延伸復健資源與課程工具（可折疊收納） -->
         <section class="cr-section-wrap" aria-label="延伸復健資源與工具">
           <div class="cr-section-heading">🌿 延伸復健資源與課程工具 · 吱吱復健</div>
           <div class="cr-root">
             <details class="cr-panel">
               <summary>
                 <span class="cr-symbol">
-                  <svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="22">
+                  <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="20">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                   </svg>
                 </span>
                 <div>
                   <div class="cr-panel-title">復健衛教資訊懶人包</div>
-                  <div class="cr-panel-sub">腦中風與帕金森生活復健指南，依需要選擇閱讀</div>
+                  <div class="cr-panel-sub">腦中風與帕金森生活復健指南</div>
                 </div>
                 <span aria-hidden="true" class="cr-chev"></span>
               </summary>
               <div class="cr-panel-content">
-                <p>將常見的復健與照護問題整理成容易查找的指南，可依疾病與目前遇到的生活困難選擇閱讀。</p>
                 <div class="cr-feature">
                   <h3>中風復健攻略</h3>
                   <div class="cr-muted">包含手部動作、站立行走、生活自理、照顧及其他常見問題。</div>
@@ -288,7 +296,7 @@
                 </div>
                 <div class="cr-feature">
                   <h3>帕金森氏症生活復健指南</h3>
-                  <div class="cr-muted">從翻身、走路、手部動作到疲勞與照顧安排，以問題卡片探索；提供民眾家屬版與職能治療師專業版。</div>
+                  <div class="cr-muted">從翻身、走路、手部動作到疲勞與照顧安排，提供民眾版與專業版。</div>
                   <div class="cr-linkrow">
                     <a href="https://reliveot.github.io/parkinsons-rehab-guide/" rel="noopener" target="_blank">開啟帕金森生活復健指南 ↗</a>
                   </div>
@@ -299,7 +307,7 @@
             <details class="cr-panel">
               <summary>
                 <span class="cr-symbol">
-                  <svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="22">
+                  <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="20">
                     <path d="m2 10 10-6 10 6-10 6z"></path>
                     <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
                     <path d="M22 10v7"></path>
@@ -307,7 +315,7 @@
                 </span>
                 <div>
                   <div class="cr-panel-title">手功能五階段線上課程</div>
-                  <div class="cr-panel-sub">會員課程｜提供免費預覽與教學</div>
+                  <div class="cr-panel-sub">YouTube 會員課程｜免費預覽與教學</div>
                 </div>
                 <span aria-hidden="true" class="cr-chev"></span>
               </summary>
@@ -317,9 +325,8 @@
                   <div class="cr-card-course-body">
                     <span class="cr-card-paid">YouTube 付費會員課程</span>
                     <h3>中風後，讓患側手回到生活</h3>
-                    <p>從目前做得到的動作開始，認識五階段練習、調整難度，讓患側手逐步參與生活。</p>
-                    <a class="cr-card-primary-link" href="https://reliveot.github.io/stroke-hand-course/" rel="noopener noreferrer" target="_blank">查看課程介紹與免費教學 ↗</a>
-                    <div class="cr-card-mini-note">完整課程約 1 小時 40 分鐘｜YouTube 會員 NT$600／月<br>另有免費預覽與教學影片，完整課程需付費加入會員。</div>
+                    <p>從目前做得到的動作開始，認識五階段練習、調整難度。</p>
+                    <a class="cr-card-primary-link" href="https://reliveot.github.io/stroke-hand-course/" rel="noopener noreferrer" target="_blank">查看課程介紹 ↗</a>
                   </div>
                 </div>
               </div>
@@ -328,7 +335,7 @@
             <details class="cr-panel">
               <summary>
                 <span class="cr-symbol">
-                  <svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="22">
+                  <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="20">
                     <path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                     <rect height="7" width="10" x="7" y="14"></rect>
                   </svg>
@@ -340,7 +347,6 @@
                 <span aria-hidden="true" class="cr-chev"></span>
               </summary>
               <div class="cr-panel-content">
-                <p>六種 3D 列印手部練習工具，提供前臂翻轉、雙手合作、抓握與日常操作等活動選擇。</p>
                 <div class="cr-card-tools-grid">
                   <div class="cr-card-tool"><img alt="翻轉手" src="./images/tool-1.webp" onerror="this.style.display='none'"><span>翻轉手</span></div>
                   <div class="cr-card-tool"><img alt="雙手合作握把" src="./images/tool-2.webp" onerror="this.style.display='none'"><span>雙手合作握把</span></div>
@@ -350,19 +356,18 @@
                   <div class="cr-card-tool"><img alt="筷夾手" src="./images/tool-6.webp" onerror="this.style.display='none'"><span>筷夾手</span></div>
                 </div>
                 <div class="cr-linkrow cr-card-tool-links">
-                  <a href="https://shopee.tw/peter72401" rel="noopener noreferrer" target="_blank">查看練習工具與賣場 ↗</a>
-                  <a href="https://www.youtube.com/playlist?list=PLYhYZRJq80tqVBohsxQh9XkC1cUZw-QXT" rel="noopener noreferrer" target="_blank">觀看免費操作示範 ↗</a>
+                  <a href="https://shopee.tw/peter72401" rel="noopener noreferrer" target="_blank">查看練習工具 ↗</a>
+                  <a href="https://www.youtube.com/playlist?list=PLYhYZRJq80tqVBohsxQh9XkC1cUZw-QXT" rel="noopener noreferrer" target="_blank">免費操作示範 ↗</a>
                 </div>
-                <div class="cr-smallprint">工具是輔助日常活動與自主練習的選擇，建議依目前能力、練習目標與安全條件，和治療師討論適用方式。</div>
               </div>
             </details>
 
             <div class="cr-contact-bar">
-              <div class="cr-contact-info">楊昀霖 職能治療師 · 吱吱復健 Relive OT</div>
+              <div class="cr-contact-info">楊昀霖 職能治療師 · 吱吱復健</div>
               <div class="cr-contact-links">
-                <a class="line-btn" href="https://lin.ee/4HnOdD4" rel="noopener noreferrer" target="_blank">LINE 聯絡 ↗</a>
-                <a href="https://www.facebook.com/relive.OT" rel="noopener noreferrer" target="_blank">FB 粉專 ↗</a>
-                <a href="https://reliveot.github.io/card/" rel="noopener noreferrer" target="_blank">完整電子名片 ↗</a>
+                <a class="line-btn" href="https://lin.ee/4HnOdD4" rel="noopener noreferrer" target="_blank">LINE ↗</a>
+                <a href="https://www.facebook.com/relive.OT" rel="noopener noreferrer" target="_blank">FB ↗</a>
+                <a href="https://reliveot.github.io/card/" rel="noopener noreferrer" target="_blank">電子名片 ↗</a>
               </div>
             </div>
           </div>
@@ -370,8 +375,8 @@
       </div>
 
       <div class="settings-footer">
-        <button id="btn-restart-session" class="secondary-btn">🔄 換一批新口味重來</button>
-        <button id="btn-apply-settings" class="primary-btn">✓ 套用並返回做冰</button>
+        <button id="btn-restart-session" class="secondary-btn">🔄 換新口味重來</button>
+        <button id="btn-apply-settings" class="primary-btn">✓ 套用並返回</button>
       </div>
     </div>
   </div>
@@ -379,9 +384,9 @@
   <!-- 整組完成結算彈窗 -->
   <div id="summary-modal" class="modal-overlay">
     <div class="summary-card">
-      <div style="font-size:2.6rem;">🥣✨🏆</div>
-      <div style="font-size:1.75rem; font-weight:900; color:#4A3222;">今日訂單全部完成！</div>
-      <div style="font-size:1.08rem; font-weight:800; color:#A34E34; margin-top:-4px;">古早味冰果室・今日完售！</div>
+      <div style="font-size:2.4rem;">🥣✨🏆</div>
+      <div style="font-size:1.65rem; font-weight:900; color:#4A3222;">今日訂單全部完成！</div>
+      <div style="font-size:1.02rem; font-weight:800; color:#A34E34; margin-top:-4px;">古早味冰果室・今日完售！</div>
 
       <div class="stats-row">
         <div class="stat-box">
